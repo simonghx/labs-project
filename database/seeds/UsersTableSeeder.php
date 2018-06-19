@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             "email" => "simongheux@gmail.com",
             "password" => bcrypt('azerty'),
             "role_id" => 1,
+            "poste" => "Project Manager",
         ]);
 
         App\User::create([
@@ -23,6 +24,7 @@ class UsersTableSeeder extends Seeder
             "email" => "hajjisami@gmail.com",
             "password" => bcrypt('azerty'),
             "role_id" => 2,
+            "poste" => "Community Manager",
         ]);
     }
 }

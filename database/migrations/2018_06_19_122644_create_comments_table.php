@@ -32,13 +32,13 @@ class CreateCommentsTable extends Migration
 
             $table->index(["articles_id"], 'fk_comments_articles1_idx');
 
-            $table->index(["user_id"], 'fk_comments_user1_idx');
+            // $table->index(["user_id"], 'fk_comments_user1_idx');
 
 
-            $table->foreign('user_id', 'fk_comments_user1_idx')
-                ->references('id')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+            // $table->foreign('user_id', 'fk_comments_user1_idx')
+            //     ->references('id')->on('users')
+            //     ->onDelete('no action')
+            //     ->onUpdate('no action');
 
             $table->foreign('articles_id', 'fk_comments_articles1_idx')
                 ->references('id')->on('articles')

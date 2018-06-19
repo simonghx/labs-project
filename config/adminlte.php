@@ -121,6 +121,11 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Utilisateurs',
+            'url'         => 'admin/users',
+            'icon'        => 'users',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
