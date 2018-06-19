@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/services', function () {
+    return view('services');
+});
 
 Auth::routes();
 
