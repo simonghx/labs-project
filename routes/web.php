@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//route temporaire
 Route::get('/', function () {
     return view('index');
 });
@@ -30,3 +30,4 @@ Route::get('/contact', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/admin/users', 'UserController');
