@@ -15,10 +15,16 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/services', function () {
-    return view('services');
+    return view('front.services');
 });
 Route::get('/blog', function () {
-    return view('blog');
+    return view('front.blog');
+});
+Route::get('/post', function () {
+    return view('front.article');
+});
+Route::get('/contact', function () {
+    return view('front.contact');
 });
 
 Auth::routes();

@@ -27,19 +27,8 @@
 
         @include('partials.blog.articles')
 
-				<div class="col-md-4 col-sm-5 sidebar">
-          
-          @include('partials.blog.filtres')
-          
-					@include('partials.blog.quote')
-					{{-- <!-- Single widget -->
-					<div class="widget-item">
-						<h2 class="widget-title">Add</h2>
-						<div class="add">
-							<a href=""><img src="img/add.jpg" alt=""></a>
-						</div>
-					</div> --}}
-				</div>
+				@include('components.sidebar')
+				
 			</div>
 		</div>
 	</div>

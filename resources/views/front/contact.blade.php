@@ -20,6 +20,8 @@
 	@endcomponent
 	<!-- Page header end-->
 
+  <!-- Google map -->
+	<div class="map" id="map-area"></div>
 
 	@include('components.contact-form')
 	
