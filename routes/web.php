@@ -17,6 +17,9 @@ Route::get('/', function () {
 Route::get('/services', function () {
     return view('services');
 });
+Route::get('/blog', function () {
+    return view('blog');
+});
 
 Auth::routes();
 
