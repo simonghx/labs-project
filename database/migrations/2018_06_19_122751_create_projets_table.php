@@ -7,15 +7,30 @@ use Illuminate\Database\Migrations\Migration;
 class CreateProjetsTable extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $set_schema_table = 'projets';
+
+    /**
      * Run the migrations.
+     * @table projets
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('projets', function (Blueprint $table) {
+        if (Schema::hasTable($this->set_schema_table)) return;
+        Schema::create($this->set_schema_table, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->timestamps();
+            $table->string('titre');
+            $table->string('image')->nullable();
+            $table->string('desc');
+            $table->text('content');
+            $table->string('icon')->nullable();
+            $table->softDeletes();
+            $table->nullableTimestamps();
         });
     }
 
@@ -24,8 +39,8 @@ class CreateProjetsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('projets');
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->set_schema_table);
+     }
 }

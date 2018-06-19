@@ -7,15 +7,26 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCategoriesTable extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $set_schema_table = 'categories';
+
+    /**
      * Run the migrations.
+     * @table categories
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        if (Schema::hasTable($this->set_schema_table)) return;
+        Schema::create($this->set_schema_table, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->softDeletes();
+            $table->nullableTimestamps();
         });
     }
 
@@ -24,8 +35,8 @@ class CreateCategoriesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('categories');
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->set_schema_table);
+     }
 }

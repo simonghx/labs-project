@@ -7,15 +7,27 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCarouselsTable extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $set_schema_table = 'carousels';
+
+    /**
      * Run the migrations.
+     * @table carousels
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('carousels', function (Blueprint $table) {
+        if (Schema::hasTable($this->set_schema_table)) return;
+        Schema::create($this->set_schema_table, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('image');
+            $table->softDeletes();
+            $table->nullableTimestamps();
         });
     }
 
@@ -24,8 +36,8 @@ class CreateCarouselsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('carousels');
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->set_schema_table);
+     }
 }

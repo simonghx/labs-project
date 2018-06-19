@@ -7,15 +7,28 @@ use Illuminate\Database\Migrations\Migration;
 class CreateServicesTable extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $set_schema_table = 'services';
+
+    /**
      * Run the migrations.
+     * @table services
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        if (Schema::hasTable($this->set_schema_table)) return;
+        Schema::create($this->set_schema_table, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('icon');
+            $table->text('content');
+            $table->softDeletes();
+            $table->nullableTimestamps();
         });
     }
 
@@ -24,8 +37,8 @@ class CreateServicesTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('services');
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->set_schema_table);
+     }
 }

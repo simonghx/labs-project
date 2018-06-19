@@ -7,15 +7,28 @@ use Illuminate\Database\Migrations\Migration;
 class CreateContentsTable extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $set_schema_table = 'contents';
+
+    /**
      * Run the migrations.
+     * @table contents
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        if (Schema::hasTable($this->set_schema_table)) return;
+        Schema::create($this->set_schema_table, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('content')->nullable();
+            $table->string('image')->nullable();
+            $table->softDeletes();
+            $table->nullableTimestamps();
         });
     }
 
@@ -24,8 +37,8 @@ class CreateContentsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('contents');
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->set_schema_table);
+     }
 }
