@@ -49,6 +49,19 @@
                   @endif
                 <input class="form-control {{$errors->has('password_confirmation')?'border-danger':''}} " type="password" name="password_confirmation" id="" >
               </div>
+              <div class="form-group">
+                <img src="{{Storage::disk('editeursThumbs')->url($user->image)}}" alt="">
+                    @if($errors->has('image'))
+                        @foreach($errors->get('image') as $error)
+                        <div class="text-danger">{{$error}}</div>
+                        @endforeach
+                    @endif
+                    <div class="custom-file"  data-bsfileupload>
+                        <label class="custom-file-label" for="customFile">Uploader une image</label>
+                        <input name="image" type="file" class="custom-file-input" id="customFile">
+                    </div>
+                    
+                </div>
               @foreach($roles as $role)
               <div class="form-check">
                 

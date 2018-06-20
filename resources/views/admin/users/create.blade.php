@@ -38,11 +38,11 @@
               </div>
               <div class="form-group">
                     <img src="" alt="">
-                    {{-- @if($errors->has('image'))
+                    @if($errors->has('image'))
                         @foreach($errors->get('image') as $error)
                         <div class="text-danger">{{$error}}</div>
                         @endforeach
-                    @endif --}}
+                    @endif
                     <div class="custom-file"  data-bsfileupload>
                         <label class="custom-file-label" for="customFile">Uploader une image</label>
                         <input name="image" type="file" class="custom-file-input" id="customFile">

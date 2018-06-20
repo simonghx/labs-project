@@ -52,9 +52,17 @@ class UserController extends Controller
         $user->poste = $request->poste;
         $user->role_id = $request->role_id;
         $user->password = bcrypt('secret');
+        
         if ($request->image != null) {    
-            
-            $user->image = $this->imageResize->imageStore($request->image);
+            $argImg = [
+                'request' => $request->image,
+                'disk1' => 'editeurs',
+                'disk2' => 'editeursThumbs',
+                'x' => 360,
+                'y' => 488,
+            ];
+
+            $user->image = $this->imageResize->imageStore($argImg);
 
         }
 
@@ -119,10 +127,19 @@ class UserController extends Controller
 
         if ($request->image != null) {   
 
-            $this->imageResize->imageDelete($post->image);
-            $post->image = $this->imageResize->imageStore($request->image);
+            $argImg = [
+                'request' => $request->image,
+                'disk1' => 'editeurs',
+                'disk2' => 'editeursThumbs',
+                'x' => 360,
+                'y' => 488,
+            ];
+
+            $this->imageResize->imageDelete($user->image); 
+            $post->image = $this->imageResize->imageStore($argImg); 
 
         }
+
         if($user->save()){
             return redirect()->route('users.index')->with(['message' => 'Votre modification a bien été enregistrée.', 'status' => 'success']);
         } else {

@@ -15,7 +15,8 @@
     <div class="card col-md-4 m-2">
       <img class="card-img-top" src="holder.js/100x180/" alt="">
       <div class="card-body">
-        <h3 class="card-title">{{$user->name}}</h>
+        <h3 class="card-title">{{$user->name}}</h3>
+        <img src="{{Storage::disk('editeursThumbs')->url($user->image)}}" alt="">
         <p class="card-text"><h5>Poste : </h5>{{$user->poste}}</p>
         <p class="card-text"><h5>Role : </h5>{{$user->role->name}}</p>
       </div>
