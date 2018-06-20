@@ -68,7 +68,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -80,7 +82,23 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email, '. $user->id .',id',
+            'password' => 'confirmed',
+            'password_confirmation' => 'required_with:password',
+        ]);
+        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->poste = $request->poste;
+        $user->role_id = $request->role_id;
+        if($request->password != "") {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+        
+        return redirect()->route('users.show', ['user' => $user->id]);
     }
 
     /**
