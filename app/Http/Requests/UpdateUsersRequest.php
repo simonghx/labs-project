@@ -24,9 +24,10 @@ class UpdateUsersRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'name' => 'required',
-            'email' => 'required|unique:users,email, '. $user->id .',id',
+            // 'email' => 'required|unique:users,email, '. $user->id .',id',
             'password' => 'confirmed',
             'password_confirmation' => 'required_with:password',
             'poste' => 'required',

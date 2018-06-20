@@ -12,7 +12,7 @@
   <div class="box">
       
       <div class="box-body">
-          <form action="{{route('users.store')}}" method="post">
+          <form action="{{route('users.store')}}" method="post" enctype="multipart/form-data">
           @csrf
 
             <div class="form-group">
@@ -36,6 +36,19 @@
                 @endif
               <input class="form-control {{$errors->has('poste')?'border-danger':''}}" type="text" name="poste" id="" placeholder="Le poste de l'éditeur" value="{{old('poste')}}">
               </div>
+              <div class="form-group">
+                    <img src="" alt="">
+                    {{-- @if($errors->has('image'))
+                        @foreach($errors->get('image') as $error)
+                        <div class="text-danger">{{$error}}</div>
+                        @endforeach
+                    @endif --}}
+                    <div class="custom-file"  data-bsfileupload>
+                        <label class="custom-file-label" for="customFile">Uploader une image</label>
+                        <input name="image" type="file" class="custom-file-input" id="customFile">
+                    </div>
+                    
+                </div>
               @if($errors->has('role_id'))
                   <div class="text-danger">{{$errors->first('role_id')}}</div>
                 @endif
@@ -58,3 +71,7 @@
   </div>
 </div>
 @stop
+
+@push('js')
+<script src="{{asset('js/lib/bstrp-change-file-input-value.js')}}"></script>
+@endpush

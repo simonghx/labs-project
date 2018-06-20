@@ -6,10 +6,14 @@ use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUsersRequest;
-use App\Http\Requests\UpdateUsersRequest;
+// use App\Http\Requests\UpdateUsersRequest;
+use App\Services\ImageResize;
 
 class UserController extends Controller
 {
+    public function __construct(ImageResize  $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,9 +52,19 @@ class UserController extends Controller
         $user->poste = $request->poste;
         $user->role_id = $request->role_id;
         $user->password = bcrypt('secret');
-        $user->save();
+        if ($request->image != null) {    
+            
+            $user->image = $this->imageResize->imageStore($request->image);
+
+        }
+
+        if($user->save()){
+            return redirect()->route('users.index')->with(['message' => 'Votre éditeur a bien été ajouté.', 'status' => 'success']);
+        } else {
+            return redirect()->route('users.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
         
-        return redirect()->route('users.index');
+        
     }
 
     /**
@@ -84,14 +98,16 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUsersRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|unique:users,email, '. $user->id .',id',
-        //     'password' => 'confirmed',
-        //     'password_confirmation' => 'required_with:password',
-        // ]);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email, '. $user->id .',id',
+            'password' => 'confirmed',
+            'password_confirmation' => 'required_with:password',
+            'poste' => 'required',
+            'role_id' => 'required',
+        ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -100,9 +116,18 @@ class UserController extends Controller
         if($request->password != "") {
             $user->password = bcrypt($request->password);
         }
-        $user->save();
-        
-        return redirect()->route('users.show', ['user' => $user->id]);
+
+        if ($request->image != null) {   
+
+            $this->imageResize->imageDelete($post->image);
+            $post->image = $this->imageResize->imageStore($request->image);
+
+        }
+        if($user->save()){
+            return redirect()->route('users.index')->with(['message' => 'Votre modification a bien été enregistrée.', 'status' => 'success']);
+        } else {
+            return redirect()->route('users.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
     }
 
     /**
@@ -113,8 +138,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        if($user->delete()){
+            return redirect()->route('users.index')->with(['message' => 'Votre éditeur a bien été supprimé.', 'status' => 'success']);
+        } else {
+            return redirect()->route('users.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
 
-        return redirect()->route('users.index');
     }
 }

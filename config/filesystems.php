@@ -57,14 +57,14 @@ return [
 
         'editeurs' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/editeurs'),
-            'url' => env('APP_URL').'/storage/editeurs',
+            'root' => storage_path('app/public/editeurs/'),
+            'url' => env('APP_URL').'/storage/editeurs/',
             'visibility' => 'public',
         ],
-        'editeurs-thumb' => [
+        'editeursThumbs' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/editeurs/thumbs'),
-            'url' => env('APP_URL').'/storage/editeurs/thumbs',
+            'root' => storage_path('app/public/editeurs/thumbs/'),
+            'url' => env('APP_URL').'/storage/editeurs/thumbs/',
             'visibility' => 'public',
         ],
 
