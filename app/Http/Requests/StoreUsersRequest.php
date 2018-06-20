@@ -28,6 +28,7 @@ class StoreUsersRequest extends FormRequest
             'email' => 'required|email|unique:users,email',
             'password' => 'confirmed',
             'password_confirmation' => 'required_with:password',
+            'image' => 'image|max:200000',
             'poste' => 'required',
             'role_id' => 'required',
         ];
@@ -38,7 +39,9 @@ class StoreUsersRequest extends FormRequest
             'required' => 'Le champ :attribute est requis.',
             'unique' => 'Cet :attribute est déjà utilisé.',
             'email' => 'Votre :attribute ne respecte pas la syntaxe :email',
-            'confirmed' => 'Votre :attribute doit être confirmé !'
+            'confirmed' => 'Votre :attribute doit être confirmé !',
+            'image'  => ':attribute doit être un fichier image (jpeg, png, bmp, gif, ou svg)',
+            'max'  => ':attribute doit être un fichier de max :max octets.',
         ];
     }
 }

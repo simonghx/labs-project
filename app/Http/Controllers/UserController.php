@@ -52,7 +52,7 @@ class UserController extends Controller
         $user->poste = $request->poste;
         $user->role_id = $request->role_id;
         $user->password = bcrypt('secret');
-        
+
         if ($request->image != null) {    
             $argImg = [
                 'request' => $request->image,
@@ -113,6 +113,7 @@ class UserController extends Controller
             'email' => 'required|unique:users,email, '. $user->id .',id',
             'password' => 'confirmed',
             'password_confirmation' => 'required_with:password',
+            'image' => 'image|max:200000',
             'poste' => 'required',
             'role_id' => 'required',
         ]);
