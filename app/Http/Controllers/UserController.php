@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUsersRequest;
+use App\Http\Requests\UpdateUsersRequest;
 
 class UserController extends Controller
 {
@@ -15,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('role')->get();
+        $users = User::with('role')->get()->filter(function($user){
+            return $user->role->slug != "admin";
+        });
         return view('admin.users.index', compact('users'));
     }
 
@@ -36,7 +40,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUsersRequest $request)
     {
         $user = new User;
         $user->name = $request->name;
@@ -80,15 +84,15 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUsersRequest $request, User $user)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email, '. $user->id .',id',
-            'password' => 'confirmed',
-            'password_confirmation' => 'required_with:password',
-        ]);
-        
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|unique:users,email, '. $user->id .',id',
+        //     'password' => 'confirmed',
+        //     'password_confirmation' => 'required_with:password',
+        // ]);
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->poste = $request->poste;

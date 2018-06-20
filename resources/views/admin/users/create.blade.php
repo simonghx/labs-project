@@ -17,25 +17,28 @@
 
             <div class="form-group">
               <label for="">Nom de l'éditeur</label>
-              {{-- @if($errors->has('name'))
+              @if($errors->has('name'))
               <div class="text-danger">{{$errors->first('name')}}</div>
-              @endif --}}
+              @endif
               <input type="text" name="name" id="" class="form-control {{$errors->has('name')?'border-danger':''}}" placeholder="Le nom de l'éditeur" value="{{old('name')}}">
               </div>
               <div class="form-group">
                 <label for="">Email de l'éditeur</label>
-                {{-- @if($errors->has('email'))
+                @if($errors->has('email'))
                   <div class="text-danger">{{$errors->first('email')}}</div>
-                @endif --}}
+                @endif
               <input class="form-control {{$errors->has('email')?'border-danger':''}}" type="text" name="email" id="" placeholder="L'email de l'éditeur" value="{{old('email')}}">
               </div>
               <div class="form-group">
                 <label for="">Poste de l'éditeur</label>
-                {{-- @if($errors->has('poste'))
+                @if($errors->has('poste'))
                   <div class="text-danger">{{$errors->first('poste')}}</div>
-                @endif --}}
+                @endif
               <input class="form-control {{$errors->has('poste')?'border-danger':''}}" type="text" name="poste" id="" placeholder="Le poste de l'éditeur" value="{{old('poste')}}">
               </div>
+              @if($errors->has('role_id'))
+                  <div class="text-danger">{{$errors->first('role_id')}}</div>
+                @endif
               @foreach($roles as $role)
               <div class="form-check">
                 
