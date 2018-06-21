@@ -131,6 +131,11 @@ return [
             'url'         => 'admin/catandtags',
             'icon'        => 'tags',
         ],
+        [
+            'text'        => 'Articles',
+            'url'         => 'admin/articles',
+            'icon'        => 'file-text-o',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

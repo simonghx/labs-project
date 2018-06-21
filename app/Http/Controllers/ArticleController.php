@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
+use App\Categorie;
+use Auth;
+use App\Services\ImageResize;
+
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    public function __construct(ImageResize  $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::with('tags', 'user', 'categorie')->get()->sortByDesc('created_at');
+        return view('admin.articles.index', compact('articles'));
     }
 
     /**
@@ -24,7 +33,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categorie::all();
+        $tags = Tag::all();
+        return view('admin.articles.create', compact('categories', 'tags'));
     }
 
     /**
@@ -35,7 +46,40 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = new Article;
+        $article->titre = $request->titre;
+        $article->contenu = $request->contenu;
+        //récupérer les 50 premiers caractères de mon article pour en faire un entete
+        $article->entete = substr($request->contenu, 0, 50);
+        $article->user_id = Auth::user()->id;
+
+        if ($request->image != null) {    
+            $argImg = [
+                'request' => $request->image,
+                'disk1' => 'articles',
+                'disk2' => 'articlesThumbs',
+                'x' => 750,
+                'y' => 268,
+            ];
+
+            $article->image = $this->imageResize->imageStore($argImg);
+
+        }
+
+        $article->categorie_id = $request->categorie_id;
+      
+      if ($article->save()){
+            
+            foreach ($request->tags_id as $tag) {
+                $article->tags()->attach($tag);
+            }
+
+            return redirect()->route('articles.index')->with(["status"=>"success", "message" => 'Votre article a bien été enregistré']);
+
+        } else {
+            return redirect()->route('articles.index')->with(["status"=>"danger", "message" => 'Une erreur est survenue, veuillez réessayer plus tard']);
+        }
+
     }
 
     /**

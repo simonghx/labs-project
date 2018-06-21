@@ -27,7 +27,10 @@ class ImageResize {
     if(Storage::disk('editeurs')->exists($imageName)) {
       Storage::disk('editeurs')->delete($imageName);
       Storage::disk('editeursThumbs')->delete($imageName);
-      
+    }
+    if(Storage::disk('articles')->exists($imageName)) {
+      Storage::disk('articles')->delete($imageName);
+      Storage::disk('articlesThumbs')->delete($imageName);
     }
   }
 };

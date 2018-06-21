@@ -67,6 +67,18 @@ return [
             'url' => env('APP_URL').'/storage/editeurs/thumbs/',
             'visibility' => 'public',
         ],
+        'articles' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/articles/'),
+            'url' => env('APP_URL').'/storage/articles/',
+            'visibility' => 'public',
+        ],
+        'articlesThumbs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/articles/thumbs/'),
+            'url' => env('APP_URL').'/storage/editeurs/thumbs/',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
