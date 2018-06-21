@@ -126,6 +126,11 @@ return [
             'url'         => 'admin/users',
             'icon'        => 'users',
         ],
+        [
+            'text'        => 'Catégories & Tags',
+            'url'         => 'admin/catandtags',
+            'icon'        => 'tags',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

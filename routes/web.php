@@ -31,3 +31,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/admin/users', 'UserController');
+Route::get('/admin/catandtags', 'CatandtagsController@index')->name('catandtags');
+// Route::get('/admin/catandtags/edit/{categorie}', 'CatandtagsController@editCategorie')->name('categorieEdit');
+Route::resource('/categories', 'CategorieController');
+Route::resource('/tags', 'TagController');
+

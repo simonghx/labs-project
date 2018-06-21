@@ -24,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = new Tag;
+        $tag->name = $request->name;
+
+        if($tag->save()){
+            return redirect()->route('catandtags')->with(['message' => 'Votre tag a bien été créé.', 'status' => 'success']);
+        } else {
+            return redirect()->route('catandtags')->with(['message' => 'Un problème est survenu, veuillez réessayer plus tard.', 'status' => 'danger']);
+        }
     }
 
     /**
@@ -55,9 +62,10 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit($id)
     {
-        //
+        $tag = Tag::find($id);
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -67,9 +75,16 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, $id)
     {
-        //
+        $tag = Tag::find($id);
+        $tag->name = $request->name;
+        
+        if($tag->save()){
+            return redirect()->route('catandtags')->with(['message' => 'Votre tag a bien été modifié.', 'status' => 'success']);
+        } else {
+            return redirect()->route('catandtags')->with(['message' => 'Un problème est survenu, veuillez réessayer plus tard.', 'status' => 'danger']);
+        }
     }
 
     /**
@@ -78,8 +93,13 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
-        //
+        $tag = Tag::find($id);
+        if($tag->delete()) {
+            return redirect()->route('catandtags')->with(['message' => 'Votre tag a bien été supprimé.', 'status' => 'success']);
+        } else {
+            return redirect()->route('catandtags')->with(['message' => 'Un problème est survenu, veuillez réessayer plus tard.', 'status' => 'danger']);
+        }
     }
 }

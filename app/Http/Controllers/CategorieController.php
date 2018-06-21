@@ -14,7 +14,9 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        // $categories = Categorie::all();
+        
+        // return view('admin.catandtags.index', compact('categories'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -35,7 +37,14 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categorie = new Categorie;
+        $categorie->name = $request->name;
+
+        if($categorie->save()){
+            return redirect()->route('catandtags')->with(['message' => 'Votre catégorie a bien été crée.', 'status' => 'success']);
+        } else {
+            return redirect()->route('catandtags')->with(['message' => 'Un problème est survenu, veuillez réessayer plus tard.', 'status' => 'danger']);
+        }
     }
 
     /**
@@ -55,9 +64,10 @@ class CategorieController extends Controller
      * @param  \App\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorie $categorie)
+    public function edit($id)
     {
-        //
+        $categorie = Categorie::find($id);
+        return view('admin.categories.edit', compact('categorie'));
     }
 
     /**
@@ -67,9 +77,16 @@ class CategorieController extends Controller
      * @param  \App\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(Request $request, $id)
     {
-        //
+        $categorie = Categorie::find($id);
+        $categorie->name = $request->name;
+        
+        if($categorie->save()){
+            return redirect()->route('catandtags')->with(['message' => 'Votre catégorie a bien été modifiée.', 'status' => 'success']);
+        } else {
+            return redirect()->route('catandtags')->with(['message' => 'Un problème est survenu, veuillez réessayer plus tard.', 'status' => 'danger']);
+        }
     }
 
     /**
@@ -78,8 +95,13 @@ class CategorieController extends Controller
      * @param  \App\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
-        //
+        $categorie = Categorie::find($id);
+        if($categorie->delete()) {
+            return redirect()->route('catandtags')->with(['message' => 'Votre catégorie a bien été supprimée.', 'status' => 'success']);
+        } else {
+            return redirect()->route('catandtags')->with(['message' => 'Un problème est survenu, veuillez réessayer plus tard.', 'status' => 'danger']);
+        }
     }
 }
