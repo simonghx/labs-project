@@ -76,7 +76,7 @@ return [
         'articlesThumbs' => [
             'driver' => 'local',
             'root' => storage_path('app/public/articles/thumbs/'),
-            'url' => env('APP_URL').'/storage/editeurs/thumbs/',
+            'url' => env('APP_URL').'/storage/articles/thumbs/',
             'visibility' => 'public',
         ],
 

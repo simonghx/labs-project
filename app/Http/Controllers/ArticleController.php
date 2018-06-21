@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
+use App\User;
 use App\Categorie;
 use Auth;
+use Storage;
 use App\Services\ImageResize;
 
 use Illuminate\Http\Request;
@@ -22,7 +24,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with('tags', 'user', 'categorie')->get()->sortByDesc('created_at');
+        $articles = Article::with('user', 'tags',  'categorie')->get()->sortByDesc('created_at');
         return view('admin.articles.index', compact('articles'));
     }
 

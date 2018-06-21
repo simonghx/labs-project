@@ -14,16 +14,19 @@
   <div class="col-md-4">
     <div class="box">
       <div class="box-header">
+        <img class="img-fluid" src="{{Storage::disk('articlesThumbs')->url($article->image)}}" alt="">
         {{$article->titre}}
       </div>
       <div class="box-body">
-        {{$article->entete}}
+        <h6>{{$article->categorie->name}}</h6>
+        <p>{{$article->entete}}</p>
+        
       </div>
       <div class="box-footer">
-        {{$article->user->name}}
-        <hr>
+        <h6>{{$article->user->name}}</h6>
+        
         @foreach($article->tags as $tag)
-        <span class="badge badge-primary">{{$tag->name}}</span>
+        <span class="badge badge-primary p-2">{{$tag->name}}</span>
         @endforeach
         <hr>
         <a name="" id="" class="btn btn-light m-3" href="{{route('articles.show', ['article' => $article->id])}}" role="button">Voir</a>
