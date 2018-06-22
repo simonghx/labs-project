@@ -12,7 +12,7 @@
   <div class="box">
       
       <div class="box-body">
-          <form action="{{route('users.update', ['user' => $user->id])}}" method="post">
+          <form action="{{route('users.update', ['user' => $user->id])}}" method="post" enctype="multipart/form-data">
           @csrf
           @method('PUT')
 
@@ -79,5 +79,10 @@
           </form>
       </div>
   </div>
-</div>
+</div> 
 @stop
+
+
+@push('js')
+<script src="{{asset('js/lib/bstrp-change-file-input-value.js')}}"></script>
+@endpush

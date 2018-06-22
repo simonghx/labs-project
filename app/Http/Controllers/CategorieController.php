@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categorie;
+use App\Article;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -99,6 +100,9 @@ class CategorieController extends Controller
     {
         $categorie = Categorie::find($id);
         if($categorie->delete()) {
+            foreach($categorie->articles as $article){
+                $article->delete();
+            }
             return redirect()->route('catandtags')->with(['message' => 'Votre catégorie a bien été supprimée.', 'status' => 'success']);
         } else {
             return redirect()->route('catandtags')->with(['message' => 'Un problème est survenu, veuillez réessayer plus tard.', 'status' => 'danger']);

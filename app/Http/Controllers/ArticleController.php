@@ -9,6 +9,7 @@ use App\Categorie;
 use Auth;
 use Storage;
 use App\Services\ImageResize;
+use App\Http\Requests\StoreArticleRequest;
 
 use Illuminate\Http\Request;
 
@@ -46,7 +47,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
         $article = new Article;
         $article->titre = $request->titre;
@@ -92,7 +93,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('admin.articles.show', compact('article'));
     }
 
     /**
@@ -103,7 +104,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $categories = Categorie::all();
+        $tags = Tag::all();
+        return view('admin.articles.edit', compact('article', 'tags', 'categories'));
     }
 
     /**
@@ -113,9 +116,41 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(StoreArticleRequest $request, Article $article)
     {
-        //
+        $article->titre = $request->titre;
+        $article->contenu = $request->contenu;
+        //récupérer les 50 premiers caractères de mon article pour en faire un entete
+        $article->entete = substr($request->contenu, 0, 50);
+
+        if ($request->image != null) {    
+            $argImg = [
+                'request' => $request->image,
+                'disk1' => 'articles',
+                'disk2' => 'articlesThumbs',
+                'x' => 750,
+                'y' => 268,
+            ];
+
+            $this->imageResize->imageDelete($article->image);
+            $article->image = $this->imageResize->imageStore($argImg);
+
+        }
+
+        $article->categorie_id = $request->categorie_id;
+      
+      if ($article->save()){
+            $article->tags()->detach();
+            foreach ($request->tags_id as $tag) {
+                $article->tags()->attach($tag);
+            }
+
+            return redirect()->route('articles.show', ['article' => $article->id])->with(["status"=>"success", "message" => 'Votre article a bien été modifié']);
+
+        } else {
+            return redirect()->route('articles.index')->with(["status"=>"danger", "message" => 'Une erreur est survenue, veuillez réessayer plus tard']);
+        }
+
     }
 
     /**
@@ -126,6 +161,16 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        if($article->delete()) {
+
+            $article->tags()->detach(); 
+
+            if($article->image != null) {
+                $this->imageResize->imageDelete($article->image);
+            }
+            return redirect()->route('articles.index')->with(["status"=>"success", "message" => 'Votre article a bien été supprimé']);
+        } else {
+            return redirect()->route('articles.index')->with(["status"=>"danger", "message" => 'Une erreur est survenue, veuillez réessayer plus tard']);
+        }
     }
 }

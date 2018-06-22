@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Admin - Création de projet')
+@section('title', 'Admin - Création article')
 
 @section('content_header')
-    <h1>Ajout de projet</h1>
+    <h1>Ajout d'articles</h1>
 @stop
 
 @section('content')
@@ -50,6 +50,9 @@
                 <div class="form-group">
                   <div class="form-group">
                     <label for="">Choix de la catégorie :</label>
+                    @if($errors->has('categorie_id'))
+                    <div class="text-danger">{{$errors->first('categorie_id')}}</div>
+                    @endif
                     <select class="form-control" name="categorie_id" id="">
                       @foreach($categories as $categorie)
                     <option value="{{$categorie->id}}">{{$categorie->name}}</option>
@@ -60,6 +63,7 @@
 
                 <div class="form-group">
                     <label>Choix des tags :</label>
+                    
                     @if($errors->has('tags_id'))
                     <div class="text-danger">{{$errors->first('tags_id')}}</div>
                     @endif

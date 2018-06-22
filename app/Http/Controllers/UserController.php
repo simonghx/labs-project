@@ -137,7 +137,7 @@ class UserController extends Controller
             ];
 
             $this->imageResize->imageDelete($user->image); 
-            $post->image = $this->imageResize->imageStore($argImg); 
+            $user->image = $this->imageResize->imageStore($argImg); 
 
         }
 

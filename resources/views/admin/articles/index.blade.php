@@ -14,8 +14,9 @@
   <div class="col-md-4">
     <div class="box">
       <div class="box-header">
-        <img class="img-fluid" src="{{Storage::disk('articlesThumbs')->url($article->image)}}" alt="">
-        {{$article->titre}}
+        <img class="img-fluid mb-3" src="{{Storage::disk('articlesThumbs')->url($article->image)}}" alt="">
+        
+        <h2>{{$article->titre}}</h2>
       </div>
       <div class="box-body">
         <h6>{{$article->categorie->name}}</h6>
