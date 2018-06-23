@@ -37,4 +37,5 @@ Route::resource('/categories', 'CategorieController');
 Route::resource('/tags', 'TagController');
 Route::resource('/admin/articles', 'ArticleController');
 Route::resource('/admin/services', 'ServiceController');
+Route::resource('/admin/carousel', 'CarouselController');
 

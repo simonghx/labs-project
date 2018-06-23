@@ -141,6 +141,11 @@ return [
             'url'         => 'admin/services',
             'icon'        => 'suitcase',
         ],
+        [
+            'text'        => 'Carousel - bannières',
+            'url'         => 'admin/carousel',
+            'icon'        => 'file-image-o',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

@@ -79,6 +79,18 @@ return [
             'url' => env('APP_URL').'/storage/articles/thumbs/',
             'visibility' => 'public',
         ],
+        'carousel' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/carousel/'),
+            'url' => env('APP_URL').'/storage/carousel/',
+            'visibility' => 'public',
+        ],
+        'carouselBanner' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/carousel/banner/'),
+            'url' => env('APP_URL').'/storage/carousel/banner/',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

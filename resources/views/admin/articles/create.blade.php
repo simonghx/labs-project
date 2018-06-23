@@ -21,7 +21,7 @@
                     @if($errors->has('titre'))
                     <div class="text-danger">{{$errors->first('titre')}}</div>
                     @endif
-                  <input type="text" name="titre" id="titre" class="form-control {{$errors->has('titre')?'border-danger':''}}" placeholder="Le titre du projet" value="{{old('titre')}}">
+                  <input type="text" name="titre" id="titre" class="form-control {{$errors->has('titre')?'border-danger':''}}" placeholder="Le titre de l'article" value="{{old('titre')}}">
                 </div>
                 <div class="form-group">
                     <label for="">Contenu :</label>
