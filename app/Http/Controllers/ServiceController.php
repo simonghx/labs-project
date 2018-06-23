@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreServiceRequest;
 
 class ServiceController extends Controller
 {
@@ -34,7 +35,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreServiceRequest $request)
     {
         $service = new Service;
         $service->name = $request->name;
@@ -80,7 +81,7 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(StoreServiceRequest $request, Service $service)
     {
         $service->name = $request->name;
         $service->icon = $request->icon;
