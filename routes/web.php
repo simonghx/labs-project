@@ -36,4 +36,5 @@ Route::get('/admin/catandtags', 'CatandtagsController@index')->name('catandtags'
 Route::resource('/categories', 'CategorieController');
 Route::resource('/tags', 'TagController');
 Route::resource('/admin/articles', 'ArticleController');
+Route::resource('/admin/services', 'ServiceController');
 

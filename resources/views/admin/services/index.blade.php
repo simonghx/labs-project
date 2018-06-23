@@ -8,20 +8,29 @@
 
 @section('content')
 
+<a name="" id="" class="btn btn-success m-3" href="{{route('services.create')}}" role="button">Ajouter un service</a>
 <div class="row">
-  <div class="col-md-4">
-    @foreach($services as $service)
-    <div class="icon-box">
-      <div class="icon">
-        <i class="{{$service->icon}}"></i>
+  @foreach($services as $service)
+  <div class="col-md-2">
+    <div class="box">
+      <div class="box-header">
+        <h2><i class="{{$service->icon}} mr-3"></i>{{$service->name}}</h2>
       </div>
-      <div class="icon-box-text">
-        <h2>{{$service->name}}</h2>
+      <div class="box-body">
         <p>{{$service->content}}</p>
       </div>
+      <div class="box-footer">
+        <a name="" id="" class="btn btn-warning" href="{{route('services.edit', ['service' => $service->id])}}" role="button">Modifier</a>
+        <form class="d-inline" action="{{route('services.destroy', ['service' => $service->id])}}" method="POST">
+          @csrf
+          @method('DELETE')
+          
+          <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+      </div>
     </div>
-    @endforeach
   </div>
+  @endforeach
 </div>
     
 @stop
