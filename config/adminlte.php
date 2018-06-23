@@ -136,6 +136,11 @@ return [
             'url'         => 'admin/articles',
             'icon'        => 'file-text-o',
         ],
+        [
+            'text'        => 'Services',
+            'url'         => 'admin/services',
+            'icon'        => 'suitcase',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
