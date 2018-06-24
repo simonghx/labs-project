@@ -85,10 +85,16 @@ return [
             'url' => env('APP_URL').'/storage/carousel/',
             'visibility' => 'public',
         ],
-        'carouselBanner' => [
+        'projets' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/carousel/banner/'),
-            'url' => env('APP_URL').'/storage/carousel/banner/',
+            'root' => storage_path('app/public/projets/'),
+            'url' => env('APP_URL').'/storage/projets/',
+            'visibility' => 'public',
+        ],
+        'projetsThumbs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/projets/thumb/'),
+            'url' => env('APP_URL').'/storage/projets/thumb/',
             'visibility' => 'public',
         ],
 

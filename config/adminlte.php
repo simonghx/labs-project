@@ -137,6 +137,11 @@ return [
             'icon'        => 'file-text-o',
         ],
         [
+            'text'        => 'Projets',
+            'url'         => 'admin/projets',
+            'icon'        => 'folder',
+        ],
+        [
             'text'        => 'Services',
             'url'         => 'admin/services',
             'icon'        => 'suitcase',
