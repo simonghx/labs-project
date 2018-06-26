@@ -31,4 +31,18 @@
     </div>
   </div>
 </div>
+
+@if($client->testimonials->count() != 0)
+  <h1>Testimoniaux</h1>
+  @foreach($client->testimonials as $testimonial)
+    <div class="box col-md-6">
+      <div class="box-header">
+        #{{$loop->iteration}}
+      </div>
+      <div class="box-body">
+        <p>{{$testimonial->content}}</p>
+      </div>
+    </div>
+  @endforeach
+@endif
 @stop

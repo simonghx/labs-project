@@ -17,6 +17,7 @@
           <th>Miniature</th>
           <th>Client</th>
           <th>Poste</th>
+          <th>Nbr de testimoniaux</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -26,6 +27,7 @@
           <td scope="row"><img src="{{Storage::disk('clientsMini')->url($client->photo)}}" alt=""></td>
           <td><h4>{{$client->name}}</h4></td>
           <td><p>{{$client->poste}}</p></td>
+          <td><p>{{$client->testimonials->count()}}</p></td>
           <td><a name="" id="" class="btn btn-secondary" href="{{route('clients.show', ['client' => $client->id])}}" role="button">Voir</a></td>
         </tr>
         @endforeach

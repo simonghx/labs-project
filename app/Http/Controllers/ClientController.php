@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Testimonial;
 use Illuminate\Http\Request;
 use App\Services\ImageResize;
 
@@ -18,7 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(20);
+        $clients = Client::with('testimonials')->paginate(20);
         return view('admin.clients.index', compact('clients'));
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Testimonial;
+use App\Client;
 use Illuminate\Http\Request;
 
 class TestimonialController extends Controller
@@ -24,7 +25,8 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        return view('admin.testimoniaux.create', compact('clients'));
     }
 
     /**
@@ -35,7 +37,9 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $testimonial = new Testimonial;
+        $testimonial->content = $resquest->content;
+        $testimonial->client_id = $request->client_id;
     }
 
     /**

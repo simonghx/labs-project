@@ -127,9 +127,18 @@ return [
             'icon'        => 'users',
         ],
         [
-            'text'        => 'Clients & testimoniaux',
-            'url'         => 'admin/clients',
-            'icon'        => 'user',
+            'text'    => 'Clients & testimoniaux',
+            'icon'    => 'user',
+            'submenu' => [
+                [
+                    'text' => 'Clients',
+                    'url'  => 'admin/clients',
+                ],
+                [
+                    'text' => 'Testimoniaux',
+                    'url'  => 'admin/testimoniaux/create',
+                ],
+            ],
         ],
         [
             'text'        => 'Catégories & Tags',
