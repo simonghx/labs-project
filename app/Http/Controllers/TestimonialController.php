@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Testimonial;
 use App\Client;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTestimonialRequest;
 
 class TestimonialController extends Controller
 {
@@ -35,7 +36,7 @@ class TestimonialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTestimonialRequest $request)
     {
         $testimonial = new Testimonial;
         $testimonial->content = $request->content;
@@ -79,7 +80,7 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimonial $testimonial)
+    public function update(StoreTestimonialRequest $request, Testimonial $testimonial)
     {
         $testimonial->content = $request->content;
         $testimonial->client_id = $request->client_id;

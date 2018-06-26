@@ -6,6 +6,7 @@ use App\Client;
 use App\Testimonial;
 use Illuminate\Http\Request;
 use App\Services\ImageResize;
+use App\Http\Requests\StoreClientRequest;
 
 class ClientController extends Controller
 {
@@ -39,7 +40,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
         $client = new Client;
         $client->name = $request->name;
@@ -94,7 +95,7 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(StoreClientRequest $request, Client $client)
     {
         $client->name = $request->name;
         $client->poste = $request->poste;

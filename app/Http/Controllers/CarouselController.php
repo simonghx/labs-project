@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Carousel;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCarouselRequest;
 use Image;
 use Storage;
 
@@ -36,7 +37,7 @@ class CarouselController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCarouselRequest $request)
     {
         $carousel = new Carousel;
         $carousel->name = $request->name;
@@ -81,7 +82,7 @@ class CarouselController extends Controller
      * @param  \App\Carousel  $carousel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carousel $carousel)
+    public function update(StoreCarouselRequest $request, Carousel $carousel)
     {
         $carousel->name = $request->name;
 
