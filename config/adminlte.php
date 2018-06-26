@@ -126,6 +126,7 @@ return [
             'url'         => 'admin/users',
             'icon'        => 'users',
         ],
+       
         [
             'text'    => 'Clients & testimoniaux',
             'icon'    => 'user',
@@ -136,7 +137,7 @@ return [
                 ],
                 [
                     'text' => 'Testimoniaux',
-                    'url'  => 'admin/testimoniaux/create',
+                    'url'  => 'admin/clients/create',
                 ],
             ],
         ],

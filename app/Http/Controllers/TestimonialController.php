@@ -98,8 +98,9 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonial $testimonial)
+    public function destroy($testimonial)
     {
+        $testimonial = Testimonial::find($testimonial);
         if($testimonial->delete()) {
             return redirect()->route('clients.index')->with(['message' => 'Votre testimonial a bien été supprimé.', 'status' => 'success']);
         } else {
