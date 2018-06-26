@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateIconsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'users';
+    public $set_schema_table = 'icons';
 
     /**
      * Run the migrations.
-     * @table users
+     * @table icons
      *
      * @return void
      */
@@ -25,24 +25,8 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
-            $table->string('password', 100);
-            $table->rememberToken();
-            $table->unsignedInteger('role_id');
-            $table->string('image')->nullable();
-            $table->string('poste');
-
-            $table->index(["role_id"], 'fk_user_role_idx');
-
-            $table->unique(["email"], 'email_UNIQUE');
             $table->softDeletes();
             $table->nullableTimestamps();
-
-
-            $table->foreign('role_id', 'fk_user_role_idx')
-                ->references('id')->on('roles')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
     }
 
