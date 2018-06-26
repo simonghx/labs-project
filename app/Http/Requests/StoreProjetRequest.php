@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreArticleRequest extends FormRequest
+class StoreProjetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,9 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'titre' => 'required|max:255',
-            'contenu' => 'required',
+            'content' => 'required',
             'image' => 'image|max:200000',
-            'categorie_id' => 'required',
-            'tags_id' => 'required',
+            'icon' => 'required',
         ];
     }
 
@@ -36,8 +35,8 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'required' => 'Le champ :attribute est requis.',
-            'confirmed' => 'Votre :attribute doit être confirmé !',
             'image'  => ':attribute doit être un fichier image (jpeg, png, bmp, gif, ou svg)',
+            'image.max'  => ':attribute ne doit pas dépasser les :max octets.',
             'max'  => ':attribute ne doit pas dépasser les :max caractères.',
         ];
     }

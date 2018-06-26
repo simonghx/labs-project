@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Projet;
 use Illuminate\Http\Request;
 use App\Services\ImageResize;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreProjetRequest;
 
 class ProjetController extends Controller
 {
@@ -29,7 +31,8 @@ class ProjetController extends Controller
      */
     public function create()
     {
-        return view('admin.projets.create');
+        $icons = DB::table('icons')->paginate(10);
+        return view('admin.projets.create', compact('icons'));
     }
 
     /**
@@ -38,7 +41,7 @@ class ProjetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjetRequest $request)
     {
         $projet = new Projet;
         $projet->titre = $request->titre;
@@ -89,7 +92,8 @@ class ProjetController extends Controller
      */
     public function edit(Projet $projet)
     {
-        return view('admin.projets.edit', compact('projet'));
+        $icons = DB::table('icons')->paginate(10);
+        return view('admin.projets.edit', compact('projet', 'icons'));
     }
 
     /**
@@ -99,7 +103,7 @@ class ProjetController extends Controller
      * @param  \App\Projet  $projet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Projet $projet)
+    public function update(StoreProjetRequest $request, Projet $projet)
     {
          $projet->titre = $request->titre;
         $projet->icon = $request->icon;
