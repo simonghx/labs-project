@@ -129,8 +129,12 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         if($client->delete()){
-            if ($request->photo != null) { 
+            if ($client->photo != null) { 
                 $this->imageResize->imageDelete($client->photo); 
+            }
+            
+            foreach($client->testimonials as $testimonial) {
+                $testimonial->delete();
             }
             return redirect()->route('clients.index')->with(['message' => 'Votre client a bien été supprimé.', 'status' => 'success']);
         } else {

@@ -38,8 +38,14 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $testimonial = new Testimonial;
-        $testimonial->content = $resquest->content;
+        $testimonial->content = $request->content;
         $testimonial->client_id = $request->client_id;
+
+        if($testimonial->save()) {
+            return redirect()->route('clients.index')->with(['message' => 'Votre testimonial a bien été ajouté au client.', 'status' => 'success']);
+        } else {
+            return redirect()->route('testimoniaux.create')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
     }
 
     /**
@@ -59,9 +65,11 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testimonial $testimonial)
+    public function edit($testimonial)
     {
-        //
+        $clients = Client::all();
+        $testimonial = Testimonial::find($testimonial);
+        return view('admin.testimoniaux.edit', compact('testimonial', 'clients'));
     }
 
     /**
@@ -73,7 +81,14 @@ class TestimonialController extends Controller
      */
     public function update(Request $request, Testimonial $testimonial)
     {
-        //
+        $testimonial->content = $request->content;
+        $testimonial->client_id = $request->client_id;
+
+        if($testimonial->save()) {
+            return redirect()->route('clients.index')->with(['message' => 'Votre testimonial a bien été modifié.', 'status' => 'success']);
+        } else {
+            return redirect()->route('testimoniaux.create')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
     }
 
     /**
@@ -84,6 +99,10 @@ class TestimonialController extends Controller
      */
     public function destroy(Testimonial $testimonial)
     {
-        //
+        if($testimonial->delete()) {
+            return redirect()->route('clients.index')->with(['message' => 'Votre testimonial a bien été supprimé.', 'status' => 'success']);
+        } else {
+            return redirect()->route('clients.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
     }
 }

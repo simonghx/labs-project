@@ -42,6 +42,15 @@
       <div class="box-body">
         <p>{{$testimonial->content}}</p>
       </div>
+      <div class="box-footer">
+        <a name="" id="" class="btn btn-warning" href="{{route('testimoniaux.edit', ['testimonial' => $testimonial->id])}}" role="button">Modifier</a>
+        <form class="d-inline" action="{{route('testimoniaux.destroy', ['testimonial' => $testimonial->id])}}" method="POST">
+          @csrf
+          @method('DELETE')
+          
+          <button type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+      </div>
     </div>
   @endforeach
 @endif

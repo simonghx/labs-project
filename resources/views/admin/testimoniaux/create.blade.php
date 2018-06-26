@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+<div class="col-md-5">
     <form action="{{route('testimoniaux.store')}}" method="POST">
       @csrf
 
@@ -32,7 +33,8 @@
         </select>
       </div>
       
-      <button class="btn btn-success" type="submit">Ajouter</button>
-      <a name="" id="" class="btn btn-danger d-inline" href="{{route('clients.index')}}" role="button">Annuler</a>
+      <button type="submit" class="btn btn-success">Enregistrer</button>
+      <a class="btn btn-danger" href="{{route('clients.index')}}" role="button">Annuler</a>
     </form>
+    </div>
 @stop
