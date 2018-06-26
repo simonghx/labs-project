@@ -127,6 +127,11 @@ return [
             'icon'        => 'users',
         ],
         [
+            'text'        => 'Clients & testimoniaux',
+            'url'         => 'admin/clients',
+            'icon'        => 'user',
+        ],
+        [
             'text'        => 'Catégories & Tags',
             'url'         => 'admin/catandtags',
             'icon'        => 'tags',

@@ -39,4 +39,5 @@ Route::resource('/admin/articles', 'ArticleController');
 Route::resource('/admin/services', 'ServiceController');
 Route::resource('/admin/carousel', 'CarouselController');
 Route::resource('/admin/projets', 'ProjetController');
+Route::resource('/admin/clients', 'ClientController');
 

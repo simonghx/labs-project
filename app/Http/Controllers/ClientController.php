@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use App\Services\ImageResize;
 
 class ClientController extends Controller
 {
+    public function __construct(ImageResize  $imageResize){
+        $this->imageResize = $imageResize;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::paginate(20);
+        return view('admin.clients.index', compact('clients'));
     }
 
     /**
@@ -24,7 +29,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clients.create');
     }
 
     /**
@@ -35,7 +40,28 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client;
+        $client->name = $request->name;
+        $client->poste = $request->poste;
+
+        if ($request->photo != null) {    
+            $argImg = [
+                'request' => $request->photo,
+                'disk1' => 'clients',
+                'disk2' => 'clientsMini',
+                'x' => 60,
+                'y' => 60,
+            ];
+
+            $client->photo = $this->imageResize->imageStore($argImg);
+
+        }
+
+        if($client->save()){
+            return redirect()->route('clients.index')->with(['message' => 'Votre client a bien été ajouté.', 'status' => 'success']);
+        } else {
+            return redirect()->route('clients.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
     }
 
     /**
@@ -46,7 +72,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('admin.clients.show', compact('client'));
     }
 
     /**
@@ -57,7 +83,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('admin.clients.edit', compact('client'));
     }
 
     /**
@@ -69,7 +95,28 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $client->name = $request->name;
+        $client->poste = $request->poste;
+
+        if ($request->photo != null) {    
+            $argImg = [
+                'request' => $request->photo,
+                'disk1' => 'clients',
+                'disk2' => 'clientsMini',
+                'x' => 60,
+                'y' => 60,
+            ];
+
+            $this->imageResize->imageDelete($client->photo); 
+            $client->photo = $this->imageResize->imageStore($argImg);
+
+        }
+
+        if($client->save()){
+            return redirect()->route('clients.index')->with(['message' => 'Votre client a bien été modifié.', 'status' => 'success']);
+        } else {
+            return redirect()->route('clients.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
     }
 
     /**
@@ -80,6 +127,13 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        if($client->delete()){
+            if ($request->photo != null) { 
+                $this->imageResize->imageDelete($client->photo); 
+            }
+            return redirect()->route('clients.index')->with(['message' => 'Votre client a bien été supprimé.', 'status' => 'success']);
+        } else {
+            return redirect()->route('clients.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        };
     }
 }
