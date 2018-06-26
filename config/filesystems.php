@@ -97,6 +97,18 @@ return [
             'url' => env('APP_URL').'/storage/projets/thumb/',
             'visibility' => 'public',
         ],
+        'clients' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/clients/'),
+            'url' => env('APP_URL').'/storage/clients/',
+            'visibility' => 'public',
+        ],
+        'clientsMini' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/clients/miniatures/'),
+            'url' => env('APP_URL').'/storage/clients/miniatures/',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
