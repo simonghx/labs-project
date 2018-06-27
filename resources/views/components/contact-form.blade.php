@@ -20,13 +20,13 @@
 
 						<div class="row">
 							<div class="col-sm-6">
-								<input {{$errors->has('name')?"style='border:1px; border-color:red;'":''}} type="text" name="name" placeholder="Your name" value="{{old('name')}}">
+								<input class="{{$errors->has('name')?'border-danger':''}}" type="text" name="name" placeholder="Your name" value="{{old('name')}}">
 							</div>
 							<div class="col-sm-6">
-								<input {{$errors->has('email')?"style='border:1px; border-color:red;'":''}} type="text" name="email" placeholder="Your email" value="{{old('email')}}">
+								<input class="{{$errors->has('email')?'border-danger':''}}"  type="text" name="email" placeholder="Your email" value="{{old('email')}}">
 							</div>
 							<div class="col-sm-12">
-								<input type="text" name="subject" placeholder="Subject" {{$errors->has('subject')?"style='border:1px; border-color:red;'":''}} value="{{old('subject')}}">
+								<input type="text" name="subject" placeholder="Subject" class="{{$errors->has('subject')?'border-danger':''}}"  value="{{old('subject')}}">
 								<textarea name="message" placeholder="Message">{{old('message')}}</textarea>
 								<button type="submit" class="site-btn">send</button>
 							</div>
