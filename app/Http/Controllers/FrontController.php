@@ -41,7 +41,11 @@ class FrontController extends Controller
     }
 
     public function blog() {
-        return view('front.blog');
+
+        $articles = Article::with('user')->orderBy('created_at', 'desc')->paginate(3);
+        $categories = Categorie::all();
+        $tags = Tag::all();
+        return view('front.blog', compact('articles', 'categories', 'tags'));
     }
 
     public function article() {

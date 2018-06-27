@@ -53,7 +53,7 @@ class ArticleController extends Controller
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
         //récupérer les 50 premiers caractères de mon article pour en faire un entete
-        $article->entete = substr($request->contenu, 0, 50);
+        $article->entete = substr($request->contenu, 0, 100);
         $article->user_id = Auth::user()->id;
 
         if ($request->image != null) {    
@@ -93,7 +93,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $this->authorize('show', $article);
+        $this->authorize('view', $article);
         return view('admin.articles.show', compact('article'));
     }
 
@@ -105,7 +105,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        $this->authorize('edit', $article);
+        $this->authorize('view', $article);
         $categories = Categorie::all();
         $tags = Tag::all();
         return view('admin.articles.edit', compact('article', 'tags', 'categories'));
@@ -123,7 +123,7 @@ class ArticleController extends Controller
         $article->titre = $request->titre;
         $article->contenu = $request->contenu;
         //récupérer les 50 premiers caractères de mon article pour en faire un entete
-        $article->entete = substr($request->contenu, 0, 50);
+        $article->entete = substr($request->contenu, 0, 100);
 
         if ($request->image != null) {    
             $argImg = [

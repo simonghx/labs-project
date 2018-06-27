@@ -65,7 +65,7 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
-        $this->authorize('edit', $tag);
+        $this->authorize('view', $tag);
         return view('admin.tags.edit', compact('tag'));
     }
 

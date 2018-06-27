@@ -68,7 +68,7 @@ class CategorieController extends Controller
     public function edit($id)
     {
         $categorie = Categorie::find($id);
-        $this->authorize('edit', $categorie);
+        $this->authorize('view', $categorie);
         return view('admin.categories.edit', compact('categorie'));
     }
 
