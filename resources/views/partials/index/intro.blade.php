@@ -8,8 +8,9 @@
 		</div>
 		<!-- slider -->
 		<div id="hero-slider" class="owl-carousel">
-			<div class="item  hero-item" data-bg="{{asset('theme/img/01.jpg')}}"></div>
-			<div class="item  hero-item" data-bg="{{asset('theme/img/02.jpg')}}"></div>
+			@foreach($carousels as $carousel)
+			<div class="item  hero-item" data-bg="{{Storage::disk('carousel')->url($carousel->image)}}"></div>
+			@endforeach
 		</div>
 	</div>
 <!-- Intro Section -->

@@ -11,10 +11,11 @@
 <a name="" id="" class="btn btn-success m-3" href="{{route('services.create')}}" role="button">Ajouter un service</a>
 <div class="row">
   @foreach($services as $service)
-  <div class="col-md-2">
-    <div class="box">
+  <div class="col-md-2 box mx-3">
+    
       <div class="box-header">
-        <h2><i class="{{$service->icon}} mr-3"></i>{{$service->name}}</h2>
+        <div><h2><i class="{{$service->icon}} mr-3"></i>{{$service->name}}</h2></div>
+        
       </div>
       <div class="box-body">
         <p>{{$service->content}}</p>
@@ -28,7 +29,7 @@
           <button type="submit" class="btn btn-danger">Supprimer</button>
         </form>
       </div>
-    </div>
+    
   </div>
   @endforeach
 </div>

@@ -78,17 +78,17 @@
 					</div>
 				</div>
 				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
+				{{-- <div class="col-md-4 col-sm-6">
 					<div class="service">
 						<div class="icon">
-							<i class="flaticon-018-laptop-1"></i>
+							<i class="{{$service->icon}}"></i>
 						</div>
 						<div class="service-text">
-							<h2>Responsive</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+							<h2>{{$service->name}}</h2>
+							<p>{{$service->content}}</p>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<!-- single service -->
 				<div class="col-md-4 col-sm-6">
 					<div class="service">

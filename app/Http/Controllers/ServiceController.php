@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreServiceRequest;
+use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
 {
@@ -26,7 +27,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.services.create');
+        $icons = DB::table('icons')->paginate(10);
+        return view('admin.services.create', compact('icons'));
     }
 
     /**
@@ -39,7 +41,7 @@ class ServiceController extends Controller
     {
         $service = new Service;
         $service->name = $request->name;
-        $service->icon = $request->icon;
+        $service->icon = $request->icon; 
         $service->content = $request->content;
 
         if($service->save()) {
@@ -71,7 +73,8 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('admin.services.edit', compact('service'));
+        $icons = DB::table('icons')->paginate(10);
+        return view('admin.services.edit', compact('service', 'icons'));
     }
 
     /**
