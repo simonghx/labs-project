@@ -27,10 +27,26 @@ class ImageResize {
     if(Storage::disk('editeurs')->exists($imageName)) {
       Storage::disk('editeurs')->delete($imageName);
       Storage::disk('editeursThumbs')->delete($imageName);
+      Storage::disk('editeursMini')->delete($imageName);
     }
+
     if(Storage::disk('articles')->exists($imageName)) {
       Storage::disk('articles')->delete($imageName);
       Storage::disk('articlesThumbs')->delete($imageName);
+    }
+
+    if(Storage::disk('carousel')->exists($imageName)) {
+      Storage::disk('carousel')->delete($imageName);
+    }
+
+    if(Storage::disk('projets')->exists($imageName)) {
+      Storage::disk('projets')->delete($imageName);
+      Storage::disk('projetsThumbs')->delete($imageName);
+    }
+    
+    if(Storage::disk('clients')->exists($imageName)) {
+      Storage::disk('clients')->delete($imageName);
+      Storage::disk('clientsMini')->delete($imageName);
     }
   }
 };
