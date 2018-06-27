@@ -15,18 +15,20 @@
 				</div>
 				<!-- contact form -->
 				<div class="col-md-6 col-pull">
-					<form class="form-class" id="con_form">
+					<form class="form-class" id="con_form" method="POST" action="{{route('backHome')}}">
+						@csrf
+
 						<div class="row">
 							<div class="col-sm-6">
-								<input type="text" name="name" placeholder="Your name">
+								<input {{$errors->has('name')?"style='border:1px; border-color:red;'":''}} type="text" name="name" placeholder="Your name" value="{{old('name')}}">
 							</div>
 							<div class="col-sm-6">
-								<input type="text" name="email" placeholder="Your email">
+								<input {{$errors->has('email')?"style='border:1px; border-color:red;'":''}} type="text" name="email" placeholder="Your email" value="{{old('email')}}">
 							</div>
 							<div class="col-sm-12">
-								<input type="text" name="subject" placeholder="Subject">
-								<textarea name="message" placeholder="Message"></textarea>
-								<button class="site-btn">send</button>
+								<input type="text" name="subject" placeholder="Subject" {{$errors->has('subject')?"style='border:1px; border-color:red;'":''}} value="{{old('subject')}}">
+								<textarea name="message" placeholder="Message">{{old('message')}}</textarea>
+								<button type="submit" class="site-btn">send</button>
 							</div>
 						</div>
 					</form>

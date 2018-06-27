@@ -16,6 +16,8 @@ use App\Article;
 use App\Newsletter;
 use Storage;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
+use App\Events\Contact;
 
 class FrontController extends Controller
 {
@@ -57,5 +59,13 @@ class FrontController extends Controller
    
     public function contact() {
         return view('front.contact');
+    }
+
+    public function contactForm(ContactRequest $request){
+        
+            event(new Contact($request));        
+            return redirect()->route('main');
+
+        
     }
 }
