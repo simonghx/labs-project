@@ -51,11 +51,15 @@
         <h3>Actions</h3>
       </div>
       <div class="box-body">
+        @can('update', $article)
         <a name="" id="" class="btn btn-warning" href="{{route('articles.edit', ['article' => $article->id])}}" role="button">Modifier</a>
+        @endcan
         <form class="d-inline" action="{{route('articles.destroy', ['article' => $article->id])}}" method="POST">
           @csrf
           @method('DELETE')
+           @can('delete', $article)
           <button type="submit" class="btn btn-danger">Supprimer</button>
+          @endcan
         </form>
       </div>
     </div>

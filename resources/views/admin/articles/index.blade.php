@@ -30,7 +30,9 @@
         <span class="badge badge-primary p-2">{{$tag->name}}</span>
         @endforeach
         <hr>
+        @can('view', $article)
         <a name="" id="" class="btn btn-light m-3" href="{{route('articles.show', ['article' => $article->id])}}" role="button">Voir</a>
+        @endcan
       </div>
     </div>
   </div>

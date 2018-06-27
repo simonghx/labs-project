@@ -29,16 +29,16 @@ Route::get('/contact', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/admin/users', 'UserController');
-Route::get('/admin/catandtags', 'CatandtagsController@index')->name('catandtags');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::resource('/admin/users', 'UserController')->middleware('can:admin');
+Route::get('/admin/catandtags', 'CatandtagsController@index')->name('catandtags')->middleware('auth');
 // Route::get('/admin/catandtags/edit/{categorie}', 'CatandtagsController@editCategorie')->name('categorieEdit');
-Route::resource('/categories', 'CategorieController');
-Route::resource('/tags', 'TagController');
-Route::resource('/admin/articles', 'ArticleController');
-Route::resource('/admin/services', 'ServiceController');
-Route::resource('/admin/carousel', 'CarouselController');
-Route::resource('/admin/projets', 'ProjetController');
-Route::resource('/admin/clients', 'ClientController');
-Route::resource('/admin/testimoniaux', 'TestimonialController');
+Route::resource('/categories', 'CategorieController')->middleware('auth');
+Route::resource('/tags', 'TagController')->middleware('auth');
+Route::resource('/admin/articles', 'ArticleController')->middleware('auth');
+Route::resource('/admin/services', 'ServiceController')->middleware('can:admin');
+Route::resource('/admin/carousel', 'CarouselController')->middleware('can:admin');
+Route::resource('/admin/projets', 'ProjetController')->middleware('can:admin');
+Route::resource('/admin/clients', 'ClientController')->middleware('can:admin');
+Route::resource('/admin/testimoniaux', 'TestimonialController')->middleware('can:admin');
 

@@ -125,11 +125,13 @@ return [
             'text'        => 'Utilisateurs',
             'url'         => 'admin/users',
             'icon'        => 'users',
+            'can'  => 'admin',
         ],
        
         [
             'text'    => 'Clients & testimoniaux',
             'icon'    => 'user',
+            'can'  => 'admin',
             'submenu' => [
                 [
                     'text' => 'Clients',
@@ -155,16 +157,19 @@ return [
             'text'        => 'Projets',
             'url'         => 'admin/projets',
             'icon'        => 'folder',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Services',
             'url'         => 'admin/services',
             'icon'        => 'suitcase',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Carousel - bannières',
             'url'         => 'admin/carousel',
             'icon'        => 'file-image-o',
+            'can'  => 'admin',
         ],
         'ACCOUNT SETTINGS',
         [
@@ -172,49 +177,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'user',
         ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
-        ],
+        
         'LABELS',
         [
             'text'       => 'Important',
