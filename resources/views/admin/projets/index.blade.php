@@ -12,10 +12,10 @@
 <div class="row">
   @foreach($projets as $projet)
   <div class="col-md-2">
-    <div class="box">
+    <div class="box container-fluid">
       <div class="box-header">
         <img class="img-fluid mb-3" src="{{Storage::disk('projetsThumbs')->url($projet->image)}}" alt="">
-        <h2><i class="{{$projet->icon}} mr-3"></i>{{$projet->titre}}</h2>
+        <h4><i class="{{$projet->icon}} mr-3"></i>{{$projet->titre}}</h4>
       </div>
       <div class="box-body">
         <p>{{$projet->desc}}</p>

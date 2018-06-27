@@ -47,7 +47,7 @@ class ProjetController extends Controller
         $projet->titre = $request->titre;
         $projet->icon = $request->icon;
         $projet->content = $request->content;
-        $projet->desc = substr($request->titre, 0, 50);
+        $projet->desc = substr($request->content, 0, 88);
 
         if ($request->image != null) {    
             $argImg = [
@@ -108,7 +108,7 @@ class ProjetController extends Controller
          $projet->titre = $request->titre;
         $projet->icon = $request->icon;
         $projet->content = $request->content;
-        $projet->desc = substr($request->titre, 0, 50);
+        $projet->desc = substr($request->content, 0, 88);
 
         if ($request->image != null) {    
             $argImg = [

@@ -31,7 +31,13 @@ class FrontController extends Controller
 
     public function services() {
         $servicesAll = Service::paginate(9);
-        return view('front.services', compact('servicesAll'));
+        $projets = Projet::all()->sortByDesc('created_at')->take(6);
+        $projets1 = $projets->splice(3);
+        $projets2 = $projets->all();
+
+        $lastProjets = Projet::all()->sortByDesc('created_at')->take(3);
+
+        return view('front.services', compact('servicesAll', 'projets1', 'projets2', 'lastProjets'));
     }
 
     public function blog() {

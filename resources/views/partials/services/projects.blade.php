@@ -1,43 +1,22 @@
 <!-- services card section-->
-	<div class="services-card-section spad">
+	<div class="services-card-section spad" id="projet-last">
 		<div class="container">
 			<div class="row">
 				<!-- Single Card -->
+				@foreach($lastProjets as $projet)
 				<div class="col-md-4 col-sm-6">
-					<div class="sv-card">
+					<div class="sv-card" >
 						<div class="card-img">
-							<img src="img/card-1.jpg" alt="">
+							<img src="{{Storage::disk('projetsThumbs')->url($projet->image)}}" alt="">
 						</div>
-						<div class="card-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+						<div class="card-text" style="height: 287px;">
+							<h2>{{$projet->titre}}</h2>
+							<p>{{$projet->content}}</p>
 						</div>
 					</div>
 				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-6">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-2.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-12">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-3.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
+				@endforeach
+
 			</div>
 		</div>
 	</div>
