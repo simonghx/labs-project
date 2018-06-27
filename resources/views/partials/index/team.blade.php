@@ -7,29 +7,16 @@
 			</div>
 			<div class="row">
 				<!-- single member -->
+				@foreach($teams as $team)
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="{{asset('theme/img/team/1.jpg')}}" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Project Manager</h3>
+						<img src="{{Storage::disk('editeursThumbs')->url($team->image)}}" alt="">
+						<h2>{{$team->name}}</h2>
+						<h3>{{$team->poste}}</h3>
 					</div>
 				</div>
-				<!-- single member -->
-				<div class="col-sm-4">
-					<div class="member">
-						<img src="{{asset('theme/img/team/2.jpg')}}" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Junior developer</h3>
-					</div>
-				</div>
-				<!-- single member -->
-				<div class="col-sm-4">
-					<div class="member">
-						<img src="{{asset('theme/img/team/3.jpg')}}" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Digital designer</h3>
-					</div>
-				</div>
+				@endforeach
+				
 			</div>
 		</div>
 	</div>

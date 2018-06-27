@@ -21,8 +21,12 @@ class FrontController extends Controller
 {
     public function index() {
         $carousels = Carousel::all();
-        $services=Service::all()->random(3);
-        return view('index', compact('carousels', 'services'));
+        $services = Service::all()->random(3);
+        $servicesAll = Service::all()->random(9);
+        $servShuffled = $servicesAll->shuffle();
+        $testimonials = Testimonial::with('client')->get();
+        $teams = User::where('role_id', 2)->get();
+        return view('index', compact('carousels', 'services', 'testimonials', 'servShuffled', 'teams'));
     }
 
     public function services() {

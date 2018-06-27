@@ -12,7 +12,7 @@
 
   <div class="row">
     @foreach($users as $user)
-    <div class="card col-md-4 m-2">
+    <div class="card col-md-3 m-2">
       <img class="card-img-top" src="holder.js/100x180/" alt="">
       <div class="card-body">
         <h3 class="card-title">{{$user->name}}</h3>

@@ -139,7 +139,7 @@ return [
                 ],
                 [
                     'text' => 'Testimoniaux',
-                    'url'  => 'admin/clients/create',
+                    'url'  => 'admin/testimoniaux/create',
                 ],
             ],
         ],

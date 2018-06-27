@@ -23,7 +23,7 @@
 				</div>
 				<div class="col-md-3">
 					<div class="promo-btn-area">
-						<a href="" class="site-btn btn-2">Browse</a>
+						<a href="{{route('services')}}" class="site-btn btn-2">Browse</a>
 					</div>
 				</div>
 			</div>
