@@ -68,6 +68,7 @@ class CategorieController extends Controller
     public function edit($id)
     {
         $categorie = Categorie::find($id);
+        $this->authorize('edit', $categorie);
         return view('admin.categories.edit', compact('categorie'));
     }
 
@@ -99,6 +100,7 @@ class CategorieController extends Controller
     public function destroy($id)
     {
         $categorie = Categorie::find($id);
+        $this->authorize('delete', $categorie);
         if($categorie->delete()) {
             foreach($categorie->articles as $article){
                 $article->delete();

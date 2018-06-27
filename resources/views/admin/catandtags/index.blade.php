@@ -73,13 +73,13 @@
             <td>{{$tag->name}}</td>
             <td></td>
             <td>
-              @can('admin')
+              @can('edit', $tag)
               <a name="" id="" class="btn btn-warning" href="{{route('tags.edit', ['tag' => $tag->id])}}" role="button">Modifier</a>
               @endcan
               <form class="d-inline" action="{{route('tags.destroy', ['tag' => $tag->id])}}" method="POST">
                 @csrf
                 @method('DELETE')
-                @can('admin')
+                @can('delete', $tag)
                 <button type="submit" class="btn btn-danger">Supprimer</button>
                 @endcan
               </form>

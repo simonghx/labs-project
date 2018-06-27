@@ -93,6 +93,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        $this->authorize('show', $article);
         return view('admin.articles.show', compact('article'));
     }
 
@@ -104,6 +105,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        $this->authorize('edit', $article);
         $categories = Categorie::all();
         $tags = Tag::all();
         return view('admin.articles.edit', compact('article', 'tags', 'categories'));
@@ -161,6 +163,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        $this->authorize('delete', $article);
         if($article->delete()) {
 
             $article->tags()->detach(); 

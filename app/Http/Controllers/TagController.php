@@ -65,6 +65,7 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
+        $this->authorize('edit', $tag);
         return view('admin.tags.edit', compact('tag'));
     }
 
@@ -96,6 +97,7 @@ class TagController extends Controller
     public function destroy($id)
     {
         $tag = Tag::find($id);
+        $this->authorize('delete', $tag);
         if($tag->delete()) {
             return redirect()->route('catandtags')->with(['message' => 'Votre tag a bien été supprimé.', 'status' => 'success']);
         } else {
