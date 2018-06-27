@@ -5,7 +5,7 @@
 			<div class="page-info">
         <h2>{{$nom}}</h2>
 				<div class="page-links">
-				<a href="{{$url}}">{{$lien}}</a>
+				<a href="{{route('main')}}">Home</a>
 					<span>{{$nom}}</span>
 				</div>
 			</div>

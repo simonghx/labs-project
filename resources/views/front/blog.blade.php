@@ -10,13 +10,6 @@
 			Blog
 		@endslot
 		
-		@slot('lien')
-			Home
-		@endslot
-
-		@slot('url')
-			#
-		@endslot
 	@endcomponent
 	<!-- Page header end-->
 
