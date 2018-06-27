@@ -22,7 +22,7 @@
 								<a href="">2 Comments</a>
 							</div>
 							<p>{{$article->entete}}</p>
-							<a href="blog-post.html" class="read-more">Read More</a>
+							<a href="{{route('article', ['article' => $article->id])}}" class="read-more">Read More</a>
 						</div>
 					</div>
 					@endforeach

@@ -48,8 +48,11 @@ class FrontController extends Controller
         return view('front.blog', compact('articles', 'categories', 'tags'));
     }
 
-    public function article() {
-        return view('front.article');
+    public function article($id) {
+        $article = Article::find($id);
+        $categories = Categorie::all();
+        $tags = Tag::all();
+        return view('front.article', compact('article', 'categories', 'tags'));
     }
    
     public function contact() {
