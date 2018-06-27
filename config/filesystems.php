@@ -67,6 +67,12 @@ return [
             'url' => env('APP_URL').'/storage/editeurs/thumbs/',
             'visibility' => 'public',
         ],
+        'editeursMini' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/editeurs/miniature/'),
+            'url' => env('APP_URL').'/storage/editeurs/miniature/',
+            'visibility' => 'public',
+        ],
         'articles' => [
             'driver' => 'local',
             'root' => storage_path('app/public/articles/'),

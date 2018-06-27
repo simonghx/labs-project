@@ -62,7 +62,16 @@ class UserController extends Controller
                 'y' => 488,
             ];
 
+            $argMini = [
+                'request' => $request->image,
+                'disk1' => 'editeurs',
+                'disk2' => 'editeursMini',
+                'x' => 117,
+                'y' => 117,
+            ];
+
             $user->image = $this->imageResize->imageStore($argImg);
+            $user->image = $this->imageResize->imageStore($argMini);
 
         }
 
@@ -136,8 +145,17 @@ class UserController extends Controller
                 'y' => 488,
             ];
 
+            $argMini = [
+                'request' => $request->image,
+                'disk1' => 'editeurs',
+                'disk2' => 'editeursMini',
+                'x' => 117,
+                'y' => 117,
+            ];
+    
             $this->imageResize->imageDelete($user->image); 
             $user->image = $this->imageResize->imageStore($argImg); 
+            $user->image = $this->imageResize->imageStore($argMini);
 
         }
 

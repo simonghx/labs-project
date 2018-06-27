@@ -11,21 +11,11 @@
 |
 */
 //route temporaire
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/services', function () {
-    return view('front.services');
-});
-Route::get('/blog', function () {
-    return view('front.blog');
-});
-Route::get('/post', function () {
-    return view('front.article');
-});
-Route::get('/contact', function () {
-    return view('front.contact');
-});
+Route::get('/', 'FrontController@index')->name('main');
+Route::get('/services', 'FrontController@services')->name('services');
+Route::get('/blog', 'FrontController@blog')->name('blog');
+Route::get('/article', 'FrontController@article')->name('article');
+Route::get('/contact', 'FrontController@contact')->name('contact');
 
 Auth::routes();
 
