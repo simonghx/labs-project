@@ -30,7 +30,8 @@ class FrontController extends Controller
     }
 
     public function services() {
-        return view('front.services');
+        $servicesAll = Service::paginate(9);
+        return view('front.services', compact('servicesAll'));
     }
 
     public function blog() {

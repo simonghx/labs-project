@@ -14,7 +14,7 @@
 	@endcomponent
 	<!-- Page header end-->
 
-	@include('partials.index.services')
+	@include('partials.services.services')
 
 	@include('partials.services.features')
 
