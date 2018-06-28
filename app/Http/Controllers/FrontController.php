@@ -17,7 +17,9 @@ use App\Newsletter;
 use Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
+use App\Http\Requests\NewsletterRequest;
 use App\Events\Contact;
+use Mail;
 
 class FrontController extends Controller
 {
@@ -66,6 +68,18 @@ class FrontController extends Controller
             event(new Contact($request));        
             return redirect()->route('main');
 
+    }
+
+    public function newsletterForm(NewsletterRequest $request) {
+
+        $newsletter = new Newsletter;
+        $newsletter->email = $request->email;
         
+        if($newsletter->save()) {
+            Mail::to($request->email)->send(new NewsletterMail($request->email));
+            return redirect()->route('main');
+        }
+       
+
     }
 }
