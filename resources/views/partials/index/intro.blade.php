@@ -2,8 +2,10 @@
 	<div class="hero-section">
 		<div class="hero-content">
 			<div class="hero-center">
-				<img src="{{asset('theme/img/big-logo.png')}}" alt="">
-				<p>Get your freebie template now!</p>
+				
+				<img src="{{Storage::disk('content')->url($logoMain->image)}}" alt="">
+				
+				<p>{{$subIntro->titre}}</p>
 			</div>
 		</div>
 		<!-- slider -->

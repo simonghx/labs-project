@@ -3,7 +3,7 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-title">
-				<h2>Get in <span>the Lab</span> and  meet the team</h2>
+				<h2>{{$titreTeam->titre}}</h2>
 			</div>
 			<div class="row">
 				<!-- single member -->

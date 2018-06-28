@@ -21,9 +21,34 @@ use App\Http\Requests\NewsletterRequest;
 use App\Events\Contact;
 use Mail;
 use App\Mail\NewsletterMail;
+use View;
 
 class FrontController extends Controller
 {
+    public function __construct()
+     {
+    //its just a dummy data object.
+    $contactTitre = Content::where('name', 'titre-contact')->first();
+    $contactTexte = Content::where('name', 'texte-contact')->first();
+    $contactSub = Content::where('name', 'sous-titre-contact')->first();
+    $contactAdresse = Content::where('name', 'adresse')->first();
+    $contactPostal = Content::where('name', 'postal')->first();
+    $contactPhone = Content::where('name', 'phone')->first();
+    $contactMail = Content::where('name', 'contact-mail')->first();
+    $titreServices = Content::where('name', 'titre-services')->first();
+    
+
+    // Sharing is caring
+    View::share('contactTitre', $contactTitre);
+    View::share('contactTexte', $contactTexte);
+    View::share('contactSub', $contactSub);
+    View::share('contactAdresse', $contactAdresse);
+    View::share('contactPostal', $contactPostal);
+    View::share('contactPhone', $contactPhone);
+    View::share('contactMail', $contactMail);
+    View::share('titreServices', $titreServices);
+    }
+
     public function index() {
         $carousels = Carousel::all();
         $services = Service::all()->random(3);
@@ -31,8 +56,19 @@ class FrontController extends Controller
         $servShuffled = $servicesAll->shuffle();
         $testimonials = Testimonial::with('client')->get();
         $teams = User::where('role_id', 2)->get();
+        $logoMain = Content::where('name', 'logo-main')->first();
+        $subIntro = Content::where('name', 'sous-titre-main')->first();
+        $titreAbout = Content::where('name', 'titre1')->first();
+        $texteAbout1 = Content::where('name', 'texte1')->first();
+        $texteAbout2 = Content::where('name', 'texte2')->first();
+        $imageYoutube = Content::where('name', 'image-youtube')->first();
+        $lienYoutube = Content::where('name', 'lien-youtube')->first();
         
-        return view('index', compact('carousels', 'services', 'testimonials', 'servShuffled', 'teams'));
+        $titreTeam = Content::where('name', 'titre-team')->first();
+        $titreReady = Content::where('name', 'titre-ready')->first();
+        $subReady = Content::where('name', 'sous-titre-ready')->first();
+
+        return view('index', compact('carousels', 'services', 'testimonials', 'servShuffled', 'teams', 'logoMain', 'subIntro', 'titreAbout', 'texteAbout1', 'texteAbout2', 'imageYoutube', 'lienYoutube','titreTeam', 'titreReady', 'subReady'));
     }
 
     public function services() {
@@ -41,9 +77,11 @@ class FrontController extends Controller
         $projets1 = $projets->splice(3);
         $projets2 = $projets->all();
 
+        $titreProjet = Content::where('name', 'titre-projet')->first();
+
         $lastProjets = Projet::all()->sortByDesc('created_at')->take(3);
 
-        return view('front.services', compact('servicesAll', 'projets1', 'projets2', 'lastProjets'));
+        return view('front.services', compact('servicesAll', 'projets1', 'projets2', 'lastProjets', 'titreProjet'));
     }
 
     public function blog() {
@@ -51,7 +89,10 @@ class FrontController extends Controller
         $articles = Article::with('user')->orderBy('created_at', 'desc')->paginate(3);
         $categories = Categorie::all();
         $tags = Tag::all();
-        return view('front.blog', compact('articles', 'categories', 'tags'));
+
+        $quote = Content::where('name', 'quote')->first();
+
+        return view('front.blog', compact('articles', 'categories', 'tags', 'quote'));
     }
 
     public function article($id) {
