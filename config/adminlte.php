@@ -171,6 +171,12 @@ return [
             'icon'        => 'file-image-o',
             'can'  => 'admin',
         ],
+        [
+            'text'        => 'Newsletter - inscrits',
+            'url'         => 'admin/newsletter',
+            'icon'        => 'send-o',
+            'can'  => 'admin',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

@@ -6,7 +6,8 @@ use App\Newsletter;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsletterRequest;
 use Mail;
-use App\Mails\NewsletterMail;
+use App\Mail\NewsletterMail;
+use App\Mail\UnscribeNewsletterMail;
 
 
 class NewsletterController extends Controller
@@ -18,7 +19,8 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $newsletters = Newsletter::paginate(10);
+        return view('admin.newsletter.index', compact('newsletters'));
     }
 
     /**
@@ -37,9 +39,9 @@ class NewsletterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewsletterRequest $request)
+    public function store(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -84,6 +86,13 @@ class NewsletterController extends Controller
      */
     public function destroy(Newsletter $newsletter)
     {
-        //
+        if($newsletter->delete()){
+            
+            Mail::to($newsletter->letter_email)->send(new UnscribeNewsletterMail($newsletter));
+            return redirect()->route('newsletter.index')->with(["status"=>"success", "message" => "L'adresse a bien été désinscrite."]);
+
+        } else {
+            return redirect()->route('newsletter.index')->with(["status"=>"danger", "message" => 'Une erreur est survenue, veuillez réessayer plus tard']);
+        }
     }
 }
