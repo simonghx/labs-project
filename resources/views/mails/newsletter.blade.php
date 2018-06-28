@@ -7,7 +7,7 @@
   <title>Inscription à la newsletter</title>
 </head>
 <body>
-  <h1>Inscription à la newsletter - {{$request->email}}</h1>
+  <h1>Inscription à la newsletter - {{$request->letter_email}}</h1>
   <p>
     Vous êtes bien inscrit à la newsletter. A partir d'aujourd'hui, vous serez averti à chaque publication d'article sur le blog.
   </p>
