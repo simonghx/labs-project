@@ -116,10 +116,21 @@ return [
         ],
         [
             'text'        => 'Pages',
-            'url'         => 'admin/pages',
             'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Main Page',
+                    'url'  => 'admin/content/main',
+                ],
+                [
+                    'text' => 'Services Page',
+                    'url'  => 'admin/content/services',
+                ],
+                [
+                    'text' => 'Contact Page',
+                    'url'  => 'admin/content/contact',
+                ],
+            ],
         ],
         [
             'text'        => 'Utilisateurs',

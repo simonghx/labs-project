@@ -25,7 +25,8 @@ class CreateContentsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->string('content')->nullable();
+            $table->string('titre')->nullable();
+            $table->text('texte')->nullable();
             $table->string('image')->nullable();
             $table->softDeletes();
             $table->nullableTimestamps();
