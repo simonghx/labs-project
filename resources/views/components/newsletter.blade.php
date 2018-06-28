@@ -9,8 +9,11 @@
 					<!-- newsletter form -->
 					<form class="nl-form" action="{{route('backMain')}}" method="POST">
 						@csrf
-						
-						<input name="email" type="text" placeholder="Your e-mail here" value="{{old('email')}}">
+
+						@if($errors->has('letter_email'))
+						<div class="text-danger">{{$errors->first('letter_email')}}</div>
+						@endif
+						<input class="{{$errors->has('letter_email')?'border-danger':''}}" name="letter_email" type="text" placeholder="Your e-mail here" value="{{old('letter_email')}}">
 						<button type="submit" class="site-btn btn-2">Newsletter</button>
 					</form>
 				</div>

@@ -24,10 +24,7 @@ class NewsletterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique',
-            'subject' => 'required',
-            
+            'letter_email' => 'required|email|unique:newsletters',
         ];
     }
     /**
@@ -40,7 +37,7 @@ class NewsletterRequest extends FormRequest
         return [
             'required' => 'Le champ :attribute est requis',
             'email' => 'Veuillez entrer un :email valide',
-            'unique' => 'Cette email est déjà inscrit à la newsletter.'
+            'unique' => 'Cet email est déjà inscrit à la newsletter.'
         ];
     }
 }

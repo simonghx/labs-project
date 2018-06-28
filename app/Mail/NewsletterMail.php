@@ -29,6 +29,6 @@ class NewsletterMail extends Mailable
     public function build()
     {
         return $this->from('example@example.com')
-                    ->view('admin.mails.newsletter');
+                    ->view('mails.newsletter');
     }
 }

@@ -24,7 +24,9 @@ class CreateNewslettersTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('email');
+            $table->string('letter_email');
+
+            $table->unique(["letter_email"], 'letter_email_UNIQUE');
             $table->softDeletes();
             $table->nullableTimestamps();
         });

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Newsletter;
 use Illuminate\Http\Request;
+use App\Http\Requests\NewsletterRequest;
+use Mail;
+use App\Mails\NewsletterMail;
+
 
 class NewsletterController extends Controller
 {
@@ -33,9 +37,9 @@ class NewsletterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsletterRequest $request)
     {
-        //
+        
     }
 
     /**

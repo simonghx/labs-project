@@ -20,6 +20,7 @@ use App\Http\Requests\ContactRequest;
 use App\Http\Requests\NewsletterRequest;
 use App\Events\Contact;
 use Mail;
+use App\Mail\NewsletterMail;
 
 class FrontController extends Controller
 {
@@ -73,13 +74,13 @@ class FrontController extends Controller
     public function newsletterForm(NewsletterRequest $request) {
 
         $newsletter = new Newsletter;
-        $newsletter->email = $request->email;
+        $newsletter->letter_email = $request->letter_email;
         
         if($newsletter->save()) {
-            Mail::to($request->email)->send(new NewsletterMail($request->email));
-            return redirect()->route('main');
+            // dd($request->letter_email);
+            Mail::to($request->letter_email)->send(new NewsletterMail($request));
+            return redirect()->route('services');
         }
        
-
     }
 }
