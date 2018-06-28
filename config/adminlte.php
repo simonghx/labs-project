@@ -115,22 +115,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
+            'text'        => 'Contenu',
+            'url'         => 'admin/contents',
             'icon'        => 'file',
-            'submenu' => [
-                [
-                    'text' => 'Main Page',
-                    'url'  => 'admin/content/main',
-                ],
-                [
-                    'text' => 'Services Page',
-                    'url'  => 'admin/content/services',
-                ],
-                [
-                    'text' => 'Contact Page',
-                    'url'  => 'admin/content/contact',
-                ],
-            ],
+            
         ],
         [
             'text'        => 'Utilisateurs',

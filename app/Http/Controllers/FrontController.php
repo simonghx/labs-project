@@ -31,6 +31,7 @@ class FrontController extends Controller
         $servShuffled = $servicesAll->shuffle();
         $testimonials = Testimonial::with('client')->get();
         $teams = User::where('role_id', 2)->get();
+        
         return view('index', compact('carousels', 'services', 'testimonials', 'servShuffled', 'teams'));
     }
 

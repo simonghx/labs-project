@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use Illuminate\Http\Request;
+use Storage;
+use Image;
 
 class ContentController extends Controller
 {
@@ -14,7 +16,8 @@ class ContentController extends Controller
      */
     public function index()
     {
-        //
+        $contents = Content::all();
+        return view('admin.contents.index', compact('contents'));
     }
 
     /**
@@ -57,7 +60,13 @@ class ContentController extends Controller
      */
     public function edit(Content $content)
     {
-        //
+        if($content->titre != null) {
+            return view('admin.contents.editTitre', compact('content'));
+        } else if($content->texte != null) {
+            return view('admin.contents.editTexte', compact('content'));
+        } else {
+            return view('admin.contents.editImage', compact('content'));
+        }
     }
 
     /**
@@ -69,7 +78,22 @@ class ContentController extends Controller
      */
     public function update(Request $request, Content $content)
     {
-        //
+        if($request->titre) {
+            $content->titre = $request->titre;
+        } else if($request->texte){
+            $content->texte = $request->texte;
+        } else {
+            
+            Storage::disk('content')->delete($content->image);
+            $content->image = $request->image->store('', 'content');
+
+        }
+        
+        if($content->save()){
+            return redirect()->route('contents.index')->with(['message' => 'Votre contenu a bien été modifié.', 'status' => 'success']);
+        } else {
+            return redirect()->route('contents.index')->with(['message' => 'Une erreur est survenue, veuillez réessayer plus tard.', 'status' => 'danger']);
+        }
     }
 
     /**

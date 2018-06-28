@@ -115,6 +115,12 @@ return [
             'url' => env('APP_URL').'/storage/clients/miniatures/',
             'visibility' => 'public',
         ],
+        'content' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/content/'),
+            'url' => env('APP_URL').'/storage/content/',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

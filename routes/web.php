@@ -33,4 +33,5 @@ Route::resource('/admin/projets', 'ProjetController')->middleware('can:admin');
 Route::resource('/admin/clients', 'ClientController')->middleware('can:admin');
 Route::resource('/admin/testimoniaux', 'TestimonialController')->middleware('can:admin');
 Route::resource('/admin/newsletter', 'NewsletterController')->middleware('can:admin');
+Route::resource('/admin/contents', 'ContentController')->middleware('can:admin');
 

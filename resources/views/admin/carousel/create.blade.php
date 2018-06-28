@@ -26,8 +26,8 @@
             @endforeach
         @endif
         <div class="custom-file"  data-bsfileupload>
-            <label class="custom-file-label" for="customFile">Uploader une image</label>
-            <input name="image" type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile" data-bsfileupload>Uploader une image</label>
+            <input name="image" type="file" class="custom-file-input" id="customFile" data-bsfileupload>
         </div>
     
     </div>
