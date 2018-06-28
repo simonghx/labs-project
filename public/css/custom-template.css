@@ -6,3 +6,15 @@
   text-color: red !important;
 }
 
+.d-none {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-3 {
+  margin-bottom: 30px;
+}
+

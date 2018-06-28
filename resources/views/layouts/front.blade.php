@@ -73,5 +73,7 @@
 	<script src="{{asset('theme/js/owl.carousel.min.js')}}"></script>
 	<script src="{{asset('theme/js/circle-progress.min.js')}}"></script>
 	<script src="{{asset('theme/js/main.js')}}"></script>
+	<script src="{{asset('js/app.js')}}" type="text/javascript"></script>
+
 </body>
 </html>
