@@ -12,7 +12,7 @@
 						@foreach($testimonials as $testimonial)
 						<div class="testimonial">
 							<span>‘​‌‘​‌</span>
-							<p style="width:360px; height:72px;">{{$testimonial->content}}</p>
+							<p style="width:360px; height:150px;">{{$testimonial->content}}</p>
 							<div class="client-info">
 								<div class="avatar">
 									<img src="{{Storage::disk('clientsMini')->url($testimonial->client->photo)}}" alt="">

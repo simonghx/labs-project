@@ -12,12 +12,12 @@ class ContentsTableSeeder extends Seeder
     public function run()
     {
          $contents =[
-            ['name' => 'logo-main', 'titre' => null, 'texte' => null, 'image' => 'image'],
+            ['name' => 'logo-main', 'titre' => null, 'texte' => null, 'image' => 'p0JSNggJ2xERvpfymRpjpOHL6vWJoEOPyNNjVpJB.png'],
             ['name' => 'sous-titre-main', 'titre' => 'Get your freebie template now!', 'texte' => null, 'image' => null],
             ['name' => 'titre1', 'titre' => 'GET IN THE LAB AND DISCOVER THE WORLD', 'texte' => null, 'image' => null],
             ['name' => 'texte1', 'titre' => null, 'texte' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequat ante ac congue. Quisque porttitor porttitor tempus. Donec maximus ipsum non ornare vporttitor porttitorestibulum. Sed libero nibh, feugiat at enim id, bibendum sollicitudin arcu.', 'image' => null],
             ['name' => 'texte2', 'titre' => null, 'texte' => 'Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum. Nam convallis vel erat id dictum. Sed ut risus in orci convallis viverra a eget nisi. Aenean pellentesque elit vitae eros dignissim ultrices. Quisque porttitor porttitorlaoreet vel risus et luctus.', 'image' => null],
-            ['name' => 'image-youtube', 'titre' => null, 'texte' => null, 'image' => 'image'],
+            ['name' => 'image-youtube', 'titre' => null, 'texte' => null, 'image' => 'MypdTu94cUjmK5Ardulg05nzl8YHWWUTPcUMqQn6.jpeg'],
             ['name' => 'lien-youtube', 'titre' => 'http://www.youtube.com', 'texte' => null, 'image' => null],
             ['name' => 'titre-services', 'titre' => 'GET IN THE LAB AND SEE THE SERVICES', 'texte' => null, 'image' => null],
             ['name' => 'titre-team', 'titre' => 'GET IN THE LAB AND MEET THE TEAM', 'texte' => null, 'image' => null],

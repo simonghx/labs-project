@@ -47,10 +47,10 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li class="active"><a href="{{route('main')}}">Home</a></li>
-				<li><a href="{{route('services')}}">Services</a></li>
-				<li><a href="{{route('blog')}}">Blog</a></li>
-				<li><a href="{{route('contact')}}">Contact</a></li>
+				<li class="{{ Route::is('main') ? 'active' : '' }}"><a href="{{route('main')}}">Home</a></li>
+				<li class="{{ Route::is('services') ? 'active' : '' }}"><a href="{{route('services')}}">Services</a></li>
+				<li class="{{ Route::is('blog') ? 'active' : '' }}"><a href="{{route('blog')}}">Blog</a></li>
+				<li class="{{ Route::is('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
 				{{-- <li><a href="elements.html">Elements</a></li> --}}
 			</ul>
 		</nav>
