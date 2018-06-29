@@ -1,5 +1,5 @@
 <div class="comments">
-  <h2>Comments (2)</h2>
+  <h2>Comment{{count($article->comments) === 1 ? '':'s'}} ({{count($article->comments)}})</h2>
   <ul class="comment-list">
       <li>
           <div class="avatar">
@@ -10,7 +10,7 @@
               <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
           </div>
       </li>
-      <li>
+      {{-- <li>
           <div class="avatar">
               <img src="{{asset('theme/img/avatar/02.jpg')}}" alt="">
           </div>
@@ -18,6 +18,6 @@
               <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
               <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
           </div>
-      </li>
+      </li> --}}
   </ul>
 </div>

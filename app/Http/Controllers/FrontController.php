@@ -22,6 +22,7 @@ use App\Events\Contact;
 use Mail;
 use App\Mail\NewsletterMail;
 use View;
+use App\Comment;
 
 
 class FrontController extends Controller
@@ -102,9 +103,9 @@ class FrontController extends Controller
     }
 
     public function article($id) {
-        $article = Article::find($id);
+        $article = Article::find($id)->with('comments')->first();
         
-        return view('front.article', compact('article'));
+        return view('front.article', compact('article', 'comments'));
     }
    
     public function contact() {

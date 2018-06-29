@@ -14,7 +14,7 @@
                 <span>{{$tag->name}}</span>
             @endforeach
         </a>
-        <a href="">2 Comments</a>
+        <a href="">{{count($article->comments)}} comment{{count($article->comments) === 1 ? '' : 's'}}</a>
     </div>
     <p>{{$article->content}}</p>
 </div>

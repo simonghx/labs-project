@@ -24,15 +24,18 @@ class CreateCommentsTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('editor');
+            $table->string('name');
             $table->text('content');
             $table->string('email');
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('articles_id');
+            $table->string('image')->nullable();
 
             $table->index(["articles_id"], 'fk_comments_articles1_idx');
 
             $table->index(["user_id"], 'fk_comments_user1_idx');
+            $table->softDeletes();
+            $table->nullableTimestamps();
 
 
             $table->foreign('user_id', 'fk_comments_user1_idx')

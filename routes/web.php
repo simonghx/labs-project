@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//route temporaire
+//Frontend
 Route::get('/', 'FrontController@index')->name('main');
 Route::get('/services', 'FrontController@services')->name('services');
 Route::get('/blog', 'FrontController@blog')->name('blog');
@@ -21,8 +21,11 @@ Route::post('/newsletter', 'FrontController@newsletterForm')->name('backMain');
 Route::get('/blog/tag/{id}', 'FrontController@filterByTags')->name('tagSearch');
 Route::get('/blog/categorie/{id}', 'FrontController@filterByCat')->name('catSearch');
 Route::get('/blog/title', 'FrontController@filterByTitle')->name('titleSearch');
+Route::resource('/comments', 'CommentController');
 
 Auth::routes();
+
+//Backend
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::resource('/admin/users', 'UserController')->middleware('can:admin');
@@ -37,4 +40,5 @@ Route::resource('/admin/clients', 'ClientController')->middleware('can:admin');
 Route::resource('/admin/testimoniaux', 'TestimonialController')->middleware('can:admin');
 Route::resource('/admin/newsletter', 'NewsletterController')->middleware('can:admin');
 Route::resource('/admin/contents', 'ContentController')->middleware('can:admin');
+
 
