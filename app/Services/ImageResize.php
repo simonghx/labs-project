@@ -14,7 +14,7 @@ class ImageResize {
     $argImg['request']->store('', $argImg['disk2']);
     // create instance
     $thumbnail = Image::make(Storage::disk($argImg['disk2'])->path($imageName))->resize($argImg['x'], $argImg['y'], function ($constraint) {
-        $constraint->aspectRatio();
+        // $constraint->aspectRatio();
         $constraint->upsize();
     });           
   

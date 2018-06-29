@@ -125,4 +125,9 @@ class FrontController extends Controller
         }
        
     }
+
+    public function filter(){
+
+        return view('front.research');
+    }
 }
