@@ -24,8 +24,8 @@
         
       </div>
       <div class="box-footer">
-        <h6>{{$article->user->name}}</h6>
-        
+        <h5>{{$article->user->name}}</h5>
+        <h6>{{count($article->comments)}} comment{{count($article->comments) === 1 ? '':'s'}}</h6>
         @foreach($article->tags as $tag)
         <span class="badge badge-primary p-2">{{$tag->name}}</span>
         @endforeach

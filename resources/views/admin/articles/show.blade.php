@@ -44,6 +44,23 @@
         @endforeach
       </div>
     </div>
+    <div class="box">
+      <div class="box-header">
+        <h3>Comments</h3>
+      </div>
+      @foreach($article->comments as $comment)
+      <div class="box-body">
+          <div class="avatar">
+              <img src="{{Storage::disk('avatars')->url($comment->image)}}" alt="">
+          </div>
+          <div class="commetn-text">
+              <h3>{{$comment->name}} | {{$comment->email}} | {{$article->created_at->format('d M Y')}}</h3>
+              <p>{{$comment->content}}</p>
+          </div>
+        
+      </div>
+      @endforeach
+    </div>
   </div>
   <div class="col-md-4">
     <div class="box">

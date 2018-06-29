@@ -25,7 +25,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with('user', 'tags',  'categorie')->get()->sortByDesc('created_at');
+        $articles = Article::with('user', 'tags',  'categorie', 'comments')->get()->sortByDesc('created_at');
         return view('admin.articles.index', compact('articles'));
     }
 
