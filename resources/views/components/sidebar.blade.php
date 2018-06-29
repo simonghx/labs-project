@@ -3,9 +3,11 @@
     <!-- Single widget -->
   <div class="col-md-4 col-sm-5 sidebar">
     <div class="widget-item">
-      <form action="#" class="search-form">
-        <input type="text" placeholder="Search">
-        <button class="search-btn"><i class="flaticon-026-search"></i></button>
+      <form action="{{route('titleSearch')}}" class="search-form" method="GET">
+        @csrf
+
+        <input type="text" name="title" placeholder="Search">
+        <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
       </form>
     </div>
     <!-- Single widget -->
@@ -13,7 +15,7 @@
       <h2 class="widget-title">Categories</h2>
       <ul>
         @foreach($categories as $categorie)
-        <li><a href="#">{{$categorie->name}}</a></li>
+        <li><a href="{{route('catSearch', ['id' => $categorie->id])}}">{{$categorie->name}}</a></li>
         @endforeach
         
       </ul>
@@ -35,7 +37,7 @@
       <h2 class="widget-title">Tags</h2>
       <ul class="tag">
         @foreach($tags as $tag)
-        <li><a href="">{{$tag->name}}</a></li>
+        <li><a href="{{route('tagSearch', ['id' => $tag->id])}}">{{$tag->name}}</a></li>
         @endforeach
       </ul>
     </div>

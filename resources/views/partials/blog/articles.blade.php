@@ -26,6 +26,10 @@
 						</div>
 					</div>
 					@endforeach
+					@if($articles->count() === 0)
+						<h1>Aucun article ne correspond à votre recherche...</h1>
+					@endif
 					{{$articles->links('components.pagination')}}
+					
 					
 				</div>

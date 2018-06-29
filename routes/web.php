@@ -18,6 +18,9 @@ Route::get('/article/{article}', 'FrontController@article')->name('article');
 Route::get('/contact', 'FrontController@contact')->name('contact');
 Route::post('/sendmail', 'FrontController@contactForm')->name('backHome');
 Route::post('/newsletter', 'FrontController@newsletterForm')->name('backMain');
+Route::get('/blog/tag/{id}', 'FrontController@filterByTags')->name('tagSearch');
+Route::get('/blog/categorie/{id}', 'FrontController@filterByCat')->name('catSearch');
+Route::get('/blog/title', 'FrontController@filterByTitle')->name('titleSearch');
 
 Auth::routes();
 

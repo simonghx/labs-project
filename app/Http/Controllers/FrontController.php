@@ -23,6 +23,7 @@ use Mail;
 use App\Mail\NewsletterMail;
 use View;
 
+
 class FrontController extends Controller
 {
     public function __construct()
@@ -36,6 +37,9 @@ class FrontController extends Controller
     $contactPhone = Content::where('name', 'phone')->first();
     $contactMail = Content::where('name', 'contact-mail')->first();
     $titreServices = Content::where('name', 'titre-services')->first();
+    $categories = Categorie::all();
+    $tags = Tag::all();
+    $quote = Content::where('name', 'quote')->first();
     
 
     // Sharing is caring
@@ -47,6 +51,9 @@ class FrontController extends Controller
     View::share('contactPhone', $contactPhone);
     View::share('contactMail', $contactMail);
     View::share('titreServices', $titreServices);
+    View::share('categories', $categories);
+    View::share('tags', $tags);
+    View::share('quote', $quote);
     }
 
     public function index() {
@@ -63,6 +70,7 @@ class FrontController extends Controller
         $texteAbout2 = Content::where('name', 'texte2')->first();
         $imageYoutube = Content::where('name', 'image-youtube')->first();
         $lienYoutube = Content::where('name', 'lien-youtube')->first();
+        
         
         $titreTeam = Content::where('name', 'titre-team')->first();
         $titreReady = Content::where('name', 'titre-ready')->first();
@@ -90,16 +98,13 @@ class FrontController extends Controller
         $categories = Categorie::all();
         $tags = Tag::all();
 
-        $quote = Content::where('name', 'quote')->first();
-
-        return view('front.blog', compact('articles', 'categories', 'tags', 'quote'));
+        return view('front.blog', compact('articles'));
     }
 
     public function article($id) {
         $article = Article::find($id);
-        $categories = Categorie::all();
-        $tags = Tag::all();
-        return view('front.article', compact('article', 'categories', 'tags'));
+        
+        return view('front.article', compact('article'));
     }
    
     public function contact() {
@@ -126,8 +131,25 @@ class FrontController extends Controller
        
     }
 
-    public function filter(){
+    public function filterByTags($id){
 
-        return view('front.research');
+        $articles = Tag::find($id)->articles()->where('tags_id', $id)->paginate(3);
+        return view('front.research', compact('articles'));
+    }
+
+    public function filterByCat($id){
+
+        $articles = Article::where('categorie_id', $id)->paginate(3);
+        // dd($articles);
+        return view('front.research', compact('articles'));
+    }
+
+    public function filterByTitle(Request $request){
+
+        $title = $request->title;
+        // dd($title);
+        $articles = Article::where('titre', 'LIKE', '%'.$title.'%')->paginate(3);
+
+        return view('front.research', compact('articles'));
     }
 }
