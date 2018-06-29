@@ -49,7 +49,7 @@
 			<ul class="menu-list">
 				<li class="{{ Route::is('main') ? 'active' : '' }}"><a href="{{route('main')}}">Home</a></li>
 				<li class="{{ Route::is('services') ? 'active' : '' }}"><a href="{{route('services')}}">Services</a></li>
-				<li class="{{ Route::is('blog') || Route::is('tagSearch') || Route::is('catSearch') ? 'active' : '' }}"><a href="{{route('blog')}}">Blog</a></li>
+				<li class="{{ Route::is('blog') || Route::is('tagSearch') || Route::is('catSearch') || Route::is('article') ? 'active' : '' }}"><a href="{{route('blog')}}">Blog</a></li>
 				<li class="{{ Route::is('contact') ? 'active' : '' }}"><a href="{{route('contact')}}">Contact</a></li>
 				{{-- <li><a href="elements.html">Elements</a></li> --}}
 			</ul>
