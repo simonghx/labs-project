@@ -107,18 +107,20 @@
             <div class="container">
             @endif
 
-            @if(session('message'))
-               @include('components.notification')
-            @endif 
+            
 
             <!-- Content Header (Page header) -->
             <section class="content-header">
+                @if(session('message'))
+                    @include('components.notification')
+                @endif 
+                
                 @yield('content_header')
             </section>
 
             <!-- Main content -->
             <section class="content">
-
+                
                 @yield('content')
 
             </section>
