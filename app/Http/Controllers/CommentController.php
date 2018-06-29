@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use Storage;
 
 class CommentController extends Controller
 {
@@ -36,7 +37,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $rand = rand(1, 6);
+        $comment = new Comment;
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->content = $request->content;
+        $comment->image = 'avatar-'.$rand.'.jpg';
+        $comment->articles_id = $request->articles_id;
+
+        $comment->save();
+        return redirect()->back();
+
     }
 
     /**

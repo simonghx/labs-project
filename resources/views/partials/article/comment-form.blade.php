@@ -4,6 +4,7 @@
       <form class="form-class" action="{{route('comments.store')}}" method="POST">
         @csrf
           <div class="row">
+              <input type="hidden" value="{{$article->id}}" name="articles_id">
               <div class="col-sm-6">
                   <input type="text" name="name" placeholder="Your name" value="{{old('name')}}">
               </div>

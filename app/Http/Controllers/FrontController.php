@@ -104,6 +104,7 @@ class FrontController extends Controller
 
     public function article($id) {
         $article = Article::find($id)->with('comments')->first();
+        $comments = Comment::where('articles_id', $id)->get();
         
         return view('front.article', compact('article', 'comments'));
     }
